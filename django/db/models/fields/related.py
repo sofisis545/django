@@ -779,7 +779,7 @@ class ForeignKey(ForeignObject):
     }
     description = _("Foreign Key (type determined by related field)")
 
-    def __init__(self, to, on_delete, related_name=None, related_query_name=None,
+    def __init__(self, to, on_delete=CASCADE, related_name=None, related_query_name=None,
                  limit_choices_to=None, parent_link=False, to_field=None,
                  db_constraint=True, **kwargs):
         try:
@@ -1011,7 +1011,7 @@ class OneToOneField(ForeignKey):
 
     description = _("One-to-one relationship")
 
-    def __init__(self, to, on_delete, to_field=None, **kwargs):
+    def __init__(self, to, on_delete=CASCADE, to_field=None, **kwargs):
         kwargs['unique'] = True
         super().__init__(to, on_delete, to_field=to_field, **kwargs)
 
