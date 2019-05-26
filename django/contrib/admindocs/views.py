@@ -209,7 +209,7 @@ class ModelDetailView(BaseAdminDocsView):
                 data_type = field.remote_field.model.__name__
                 app_label = field.remote_field.model._meta.app_label
                 verbose = utils.parse_rst(
-                    (_("the related `%(app_label)s.%(data_type)s` object") % {
+                    (_("The related `%(app_label)s.%(data_type)s` object") % {
                         'app_label': app_label, 'data_type': data_type,
                     }),
                     'model',
@@ -229,14 +229,14 @@ class ModelDetailView(BaseAdminDocsView):
         for field in opts.many_to_many:
             data_type = field.remote_field.model.__name__
             app_label = field.remote_field.model._meta.app_label
-            verbose = _("related `%(app_label)s.%(object_name)s` objects") % {
+            verbose = _("Related `%(app_label)s.%(object_name)s` objects") % {
                 'app_label': app_label,
                 'object_name': data_type,
             }
             fields.append({
                 'name': "%s.all" % field.name,
                 "data_type": 'List',
-                'verbose': utils.parse_rst(_("all %s") % verbose, 'model', _('model:') + opts.model_name),
+                'verbose': utils.parse_rst(_('All %s') % verbose, 'model', _('model:') + opts.model_name),
             })
             fields.append({
                 'name': "%s.count" % field.name,
@@ -289,7 +289,7 @@ class ModelDetailView(BaseAdminDocsView):
 
         # Gather related objects
         for rel in opts.related_objects:
-            verbose = _("related `%(app_label)s.%(object_name)s` objects") % {
+            verbose = _("Related `%(app_label)s.%(object_name)s` objects") % {
                 'app_label': rel.related_model._meta.app_label,
                 'object_name': rel.related_model._meta.object_name,
             }
@@ -297,12 +297,12 @@ class ModelDetailView(BaseAdminDocsView):
             fields.append({
                 'name': "%s.all" % accessor,
                 'data_type': 'List',
-                'verbose': utils.parse_rst(_("all %s") % verbose, 'model', _('model:') + opts.model_name),
+                'verbose': utils.parse_rst(_("All %s") % verbose, 'model', _('model:') + opts.model_name),
             })
             fields.append({
                 'name': "%s.count" % accessor,
                 'data_type': 'Integer',
-                'verbose': utils.parse_rst(_("number of %s") % verbose, 'model', _('model:') + opts.model_name),
+                'verbose': utils.parse_rst(_("Number of %s") % verbose, 'model', _('model:') + opts.model_name),
             })
         return super().get_context_data(**{
             **kwargs,
