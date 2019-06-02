@@ -475,10 +475,11 @@ class Textarea(Widget):
 class DateTimeBaseInput(TextInput):
     format_key = ''
     supports_microseconds = False
+    format = None
 
     def __init__(self, attrs=None, format=None):
         super().__init__(attrs)
-        self.format = format or None
+        self.format = format or self.format
 
     def format_value(self, value):
         return formats.localize_input(value, self.format or formats.get_format(self.format_key)[0])
@@ -487,6 +488,8 @@ class DateTimeBaseInput(TextInput):
 class DateInput(DateTimeBaseInput):
     format_key = 'DATE_INPUT_FORMATS'
     template_name = 'django/forms/widgets/date.html'
+    format = '%Y-%m-%d'
+    input_type = 'date'
 
 
 class DateTimeInput(DateTimeBaseInput):
@@ -497,6 +500,9 @@ class DateTimeInput(DateTimeBaseInput):
 class TimeInput(DateTimeBaseInput):
     format_key = 'TIME_INPUT_FORMATS'
     template_name = 'django/forms/widgets/time.html'
+    format = '%H:%M'
+    input_type = 'time'
+
 
 
 # Defined at module level so that CheckboxInput is picklable (#17976)

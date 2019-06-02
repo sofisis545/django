@@ -1195,10 +1195,10 @@ class ModelChoiceField(ChoiceField):
         return result
 
     def _get_queryset(self):
-        return self._queryset
+        return None if self._queryset is None else self._queryset.all()
 
     def _set_queryset(self, queryset):
-        self._queryset = None if queryset is None else queryset.all()
+        self._queryset = queryset
         self.widget.choices = self.choices
 
     queryset = property(_get_queryset, _set_queryset)
