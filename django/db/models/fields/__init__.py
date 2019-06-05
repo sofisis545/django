@@ -1815,7 +1815,10 @@ class IntegerField(Field):
         value = super().get_prep_value(value)
         if value is None:
             return None
-        return int(value)
+        try:
+            return int(value)
+        except:
+            return None
 
     def get_internal_type(self):
         return "IntegerField"
