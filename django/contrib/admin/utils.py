@@ -378,6 +378,12 @@ def help_text_for_field(name, model):
 def display_for_field(value, field, empty_value_display):
     from django.contrib.admin.templatetags.admin_list import _boolean_icon
 
+    if hasattr(field, 'display_changelist'):
+        return field.display_changelist(value)
+
+    elif isinstance(field, models.FileField) and value:
+        return format_html('<a href="{}">{}</a>', value.url, value.url.split('/')[-1].split('_')[-1])
+
     if getattr(field, 'flatchoices', None):
         return dict(field.flatchoices).get(value, empty_value_display)
     # BooleanField needs special-case null-handling, so it comes before the
