@@ -247,12 +247,14 @@ class ModelFormMetaclass(DeclarativeFieldsMetaclass):
                 opts.fields = None
 
             fields = fields_for_model(
-                opts.model, opts.fields, opts.exclude, opts.widgets,
+                opts.model, opts.fields, None, opts.widgets,
                 formfield_callback, opts.localized_fields, opts.labels,
                 opts.help_texts, opts.error_messages, opts.field_classes,
                 # limit_choices_to will be applied during ModelForm.__init__().
                 apply_limit_choices_to=False,
             )
+
+
 
             # make sure opts.fields doesn't specify an invalid field
             none_model_fields = {k for k, v in fields.items() if not v}
@@ -265,11 +267,16 @@ class ModelFormMetaclass(DeclarativeFieldsMetaclass):
             # Override default model fields with any custom declared ones
             # (plus, include all the other declared fields).
             fields.update(new_class.declared_fields)
+            all_fields = dict(fields)
+            exclude = opts.exclude or []
+            fields = {k: v for k, v in fields.items() if k not in exclude}
+
         else:
             fields = new_class.declared_fields
+            all_fields = dict(new_class.declared_fields)
 
         new_class.base_fields = fields
-
+        new_class.all_fields = all_fields
         return new_class
 
 
