@@ -53,6 +53,7 @@ class Field:
         'required': _('This field is required.'),
     }
     empty_values = list(validators.EMPTY_VALUES)
+    bound_field = BoundField
 
     def __init__(self, *, required=True, widget=None, label=None, initial=None,
                  help_text='', error_messages=None, show_hidden_initial=False,
@@ -202,7 +203,7 @@ class Field:
         Return a BoundField instance that will be used when accessing the form
         field in a template.
         """
-        return BoundField(form, self, field_name)
+        return self.bound_field(form, self, field_name)
 
     def __deepcopy__(self, memo):
         result = copy.copy(self)

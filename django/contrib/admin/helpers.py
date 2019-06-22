@@ -129,14 +129,17 @@ class AdminField:
 
     def label_tag(self):
         classes = []
-        contents = conditional_escape(self.field.label)
+        label = self.field.label
         if self.is_checkbox:
             classes.append('vCheckboxLabel')
 
         if self.field.field.required:
+            label = f"{label}&nbsp*"
             classes.append('required')
         if not self.is_first:
             classes.append('inline')
+
+        contents = label
         attrs = {'class': ' '.join(classes)} if classes else {}
         # checkboxes should not have a label suffix as the checkbox appears
         # to the left of the label.
