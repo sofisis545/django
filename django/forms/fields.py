@@ -146,13 +146,6 @@ class Field:
         Validate the given value and return its "cleaned" value as an
         appropriate Python object. Raise ValidationError for any errors.
         """
-        # Modified by sofisis for use initial value in cleaned data
-        initial = self.initial
-        if not value and initial:
-            if callable(initial):
-                initial = initial()
-            value = initial
-
         value = self.to_python(value)
         self.validate(value)
         self.run_validators(value)
@@ -167,7 +160,7 @@ class Field:
         For most fields, this will simply be data; FileFields need to handle it
         a bit differently.
         """
-        if not data: # modified by Sofisis for use initial value as data
+        if self.disabled:
             return initial
         return data
 

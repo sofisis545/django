@@ -173,6 +173,7 @@ class AdminReadonlyField:
             help_text = help_text_for_field(class_name, form._meta.model)
 
         self.field = form.all_fields[field]
+        self.field.is_hidden = self.field.widget.is_hidden
         self.field.name = field
         self.field_name = field
         self.form = form

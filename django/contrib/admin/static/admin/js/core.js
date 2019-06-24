@@ -1,4 +1,3 @@
-alert()
 // // Core javascript helper functions
 //
 // // basic browser identification & version
