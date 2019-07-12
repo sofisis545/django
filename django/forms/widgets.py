@@ -196,6 +196,8 @@ class Widget(metaclass=MediaDefiningClass):
     is_localized = False
     is_required = False
     supports_microseconds = True
+    form = None  # add by sofisis for allow comunication
+    field = None  # add by sofisis for allow comunication
 
     def __init__(self, attrs=None):
         self.attrs = {} if attrs is None else attrs.copy()
