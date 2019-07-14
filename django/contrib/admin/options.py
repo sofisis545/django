@@ -1650,6 +1650,10 @@ class ModelAdmin(BaseModelAdmin):
             return queryset
         return queryset.filter(pk__in=object_pks)
 
+    @property
+    def changelist_media(self):
+        return forms.Media()
+
     @csrf_protect_m
     def changelist_view(self, request, extra_context=None):
         """
@@ -1763,6 +1767,7 @@ class ModelAdmin(BaseModelAdmin):
         else:
             media = self.media
 
+        media += self.changelist_media
         # Build the action form and populate it with available actions.
         if actions:
             action_form = self.action_form(auto_id=None)

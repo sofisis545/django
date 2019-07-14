@@ -40,10 +40,10 @@ def convert_exception_to_response(get_response):
 
 def response_for_exception(request, exc):
     if isinstance(exc, Http404):
-        if settings.DEBUG:
-            response = debug.technical_404_response(request, exc)
-        else:
-            response = get_exception_response(request, get_resolver(get_urlconf()), 404, exc)
+        #if settings.DEBUG:
+        #    response = debug.technical_404_response(request, exc)
+        #else:
+        response = get_exception_response(request, get_resolver(get_urlconf()), 404, exc)
 
     elif isinstance(exc, PermissionDenied):
         response = get_exception_response(request, get_resolver(get_urlconf()), 403, exc)

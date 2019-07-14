@@ -330,8 +330,8 @@ def label_for_field(name, model, model_admin=None, return_attr=False, form=None)
                 attr = getattr(model_admin, name)
             elif hasattr(model, name):
                 attr = getattr(model, name)
-            elif form and name in form.fields:
-                attr = form.fields[name]
+            elif form and name in form.all_fields:
+                attr = form.all_fields[name]
             else:
                 message = "Unable to lookup '%s' on %s" % (name, model._meta.object_name)
                 if model_admin:
