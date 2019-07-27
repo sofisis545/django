@@ -332,6 +332,8 @@ class Collector:
                 count = query.delete_batch(pk_list, self.using)
                 deleted_counter[model._meta.label] += count
 
+            # run post delete then delete all
+            for model, instances in self.data.items():
                 if not model._meta.auto_created:
                     for obj in instances:
                         signals.post_delete.send(
