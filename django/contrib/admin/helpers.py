@@ -316,7 +316,8 @@ class InlineAdminFormSet:
                     'verbose_name': capfirst(verbose_name),
                 },
                 'deleteText': gettext('Remove'),
-            }
+            },
+            **self.opts.inline_formset_data,
         })
 
     @property

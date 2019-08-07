@@ -1473,7 +1473,7 @@ class ModelAdmin(BaseModelAdmin):
             has_delete_permission = inline.has_delete_permission(request, obj)
             has_view_permission = inline.has_view_permission(request, obj)
             prepopulated = dict(inline.get_prepopulated_fields(request, obj))
-            inline_admin_formset = helpers.InlineAdminFormSet(
+            inline_admin_formset = inline.admin_formset(
                 inline, formset, fieldsets, prepopulated, readonly, model_admin=self,
                 has_add_permission=has_add_permission, has_change_permission=has_change_permission,
                 has_delete_permission=has_delete_permission, has_view_permission=has_view_permission,
@@ -1986,6 +1986,7 @@ class InlineModelAdmin(BaseModelAdmin):
     show_change_link = False
     checks_class = InlineModelAdminChecks
     classes = None
+    admin_formset = helpers.InlineAdminFormSet
 
     def __init__(self, parent_model, admin_site):
         self.admin_site = admin_site
@@ -2164,6 +2165,10 @@ class InlineModelAdmin(BaseModelAdmin):
             # also implies the 'view' permission.
             return self._has_any_perms_for_target_model(request, ['view', 'change'])
         return super().has_view_permission(request)
+
+    @property
+    def inline_formset_data(self):
+        return {}
 
 
 class StackedInline(InlineModelAdmin):
