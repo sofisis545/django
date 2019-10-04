@@ -77,7 +77,7 @@ class Command(BaseCommand):
             for dirname in dirnames:
                 if is_ignored_path(os.path.normpath(os.path.join(dirpath, dirname)), ignore_patterns):
                     dirnames.remove(dirname)
-                elif dirname == 'locale':
+                elif dirname == 'locale' or dirname == 'locale_regional':
                     basedirs.append(os.path.join(dirpath, dirname))
 
         # Gather existing directories.
