@@ -81,7 +81,8 @@ class DjangoJSONEncoder(json.JSONEncoder):
     def default(self, o):
         # See "Date Time String Format" in the ECMA-262 specification.
         if isinstance(o, datetime.datetime):
-            r = o.isoformat()
+            # comment by sofisis for avoid time zone confutions
+            r = o.isoformat(sep=' ')
             if o.microsecond:
                 r = r[:23] + r[26:]
             if r.endswith('+00:00'):
