@@ -269,7 +269,8 @@ class BaseModelAdmin(metaclass=forms.MediaDefiningClass):
         form_field = db_field.formfield(**kwargs)
         if (isinstance(form_field.widget, SelectMultiple) and
                 not isinstance(form_field.widget, (CheckboxSelectMultiple, AutocompleteSelectMultiple))):
-            msg = _('Hold down "Control", or "Command" on a Mac, to select more than one.')
+            # msg = _('Hold down "Control", or "Command" on a Mac, to select more than one.')
+            msg = ''
             help_text = form_field.help_text
             form_field.help_text = format_lazy('{} {}', help_text, msg) if help_text else msg
         return form_field
@@ -1505,6 +1506,7 @@ class ModelAdmin(BaseModelAdmin):
             'name': opts.verbose_name,
             'key': unquote(object_id),
         }
+        raise Exception(msg)
         self.message_user(request, msg, messages.WARNING)
         url = reverse('admin:index', current_app=self.admin_site.name)
         return HttpResponseRedirect(url)

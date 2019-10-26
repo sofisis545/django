@@ -134,7 +134,7 @@ class AdminField:
             classes.append('vCheckboxLabel')
 
         if self.field.field.required:
-            label = f"{label}&nbsp*"
+            label = f"{label}&nbsp<b style='color:red' title='{_('Required')}'>*</b>"
             classes.append('required')
         if not self.is_first:
             classes.append('inline')
@@ -145,7 +145,7 @@ class AdminField:
         # to the left of the label.
         return self.field.label_tag(
             contents=mark_safe(contents), attrs=attrs,
-            label_suffix='' if self.is_checkbox else None,
+            label_suffix='',  #if self.is_checkbox else None,
         )
 
     def errors(self):

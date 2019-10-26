@@ -430,7 +430,8 @@ def display_for_value(value, empty_value_display, boolean=False):
     elif isinstance(value, (list, tuple)):
         return ', '.join(str(v) for v in value)
     else:
-        return str(value)
+        # changed by sofisis for use in export xlsx numeric and date data
+        return value
 
 
 class NotRelationField(Exception):
