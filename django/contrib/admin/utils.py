@@ -415,6 +415,10 @@ def display_for_field(value, field, empty_value_display):
 def display_for_value(value, empty_value_display, boolean=False):
     from django.contrib.admin.templatetags.admin_list import _boolean_icon
 
+    # set by sofisis for render according __html__ attr
+    if hasattr(value, '__html__'):
+        return value
+
     if type(value) == bool:
         return _boolean_icon(value)
     elif value is None:
