@@ -1266,11 +1266,11 @@ class ModelAdmin(BaseModelAdmin):
             'obj': format_html('<a href="{}">{}</a>', urlquote(request.path), obj),
         }
         if "_continue" in request.POST:
-            msg = format_html(
-                _('The {name} "{obj}" was changed successfully. You may edit it again below.'),
-                **msg_dict
-            )
-            self.message_user(request, msg, messages.SUCCESS)
+            # msg = format_html(
+            #     _('The {name} "{obj}" was changed successfully. You may edit it again below.'),
+            #     **msg_dict
+            # )
+            # self.message_user(request, msg, messages.SUCCESS)
             redirect_url = request.path
             redirect_url = add_preserved_filters({'preserved_filters': preserved_filters, 'opts': opts}, redirect_url)
             return HttpResponseRedirect(redirect_url)
