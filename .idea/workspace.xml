@@ -1,43 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="568e5017-1fd6-414d-98a5-9251fb2a7be9" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="602b27bf-f797-4f78-9215-7205cb1e6c8f" name="Default Changelist" comment="allow">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/contrib/admin/checks.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/admin/checks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/core/files/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/files/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/db/backends/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/db/backends/utils.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/django/db/models/fields/related.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="456" column="58" selection-start-line="456" selection-start-column="58" selection-end-line="456" selection-end-column="58" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>on_delete</find>
-    </findStrings>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/django/db/models/fields/related.py" />
-      </list>
-    </option>
   </component>
   <component name="ProjectConfigurationFiles">
     <option name="files">
@@ -50,32 +40,15 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="63" />
-    <option name="y" value="34" />
-    <option name="width" value="1857" />
-    <option name="height" value="1046" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="django" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1OaQFgNslLpjbgJXLiuryEEaPA3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
@@ -87,15 +60,15 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="ServiceViewManager">
+    <option name="viewStates">
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
   </component>
@@ -104,12 +77,43 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="568e5017-1fd6-414d-98a5-9251fb2a7be9" name="Default Changelist" comment="" />
+      <changelist id="602b27bf-f797-4f78-9215-7205cb1e6c8f" name="Default Changelist" comment="helper for admin with ReadonlyField" />
       <created>1558825965179</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1558825965179</updated>
       <workItem from="1558825966639" duration="318000" />
+      <workItem from="1560498017147" duration="34000" />
+      <workItem from="1561165738195" duration="110000" />
+      <workItem from="1561352173080" duration="91000" />
+      <workItem from="1561352446320" duration="10000" />
+      <workItem from="1562740661665" duration="23000" />
+      <workItem from="1562740908313" duration="18000" />
+      <workItem from="1562898972790" duration="57000" />
+      <workItem from="1562899508211" duration="688000" />
+      <workItem from="1562900261961" duration="3000" />
+      <workItem from="1563093140090" duration="116000" />
+      <workItem from="1563094179081" duration="172000" />
+      <workItem from="1563432167169" duration="7000" />
+      <workItem from="1563432204135" duration="384000" />
+      <workItem from="1564213127006" duration="61000" />
+      <workItem from="1565147648630" duration="93000" />
+      <workItem from="1565147743956" duration="3000" />
+      <workItem from="1570206990801" duration="48000" />
+      <workItem from="1570421331089" duration="977000" />
+      <workItem from="1571254397063" duration="92000" />
+      <workItem from="1572077492750" duration="278000" />
+      <workItem from="1572081891372" duration="142000" />
+      <workItem from="1572231311611" duration="5000" />
+      <workItem from="1574872907952" duration="670000" />
+      <workItem from="1575874787131" duration="9324000" />
+      <workItem from="1575922072793" duration="635000" />
+      <workItem from="1575959379793" duration="786000" />
+      <workItem from="1575986919724" duration="1240000" />
+      <workItem from="1576135777134" duration="518000" />
+      <workItem from="1576356118672" duration="19000" />
+      <workItem from="1581064443780" duration="1478000" />
+      <workItem from="1581207770359" duration="58000" />
     </task>
     <task id="LOCAL-00001" summary="on delete CASCADE for default for avoid long refactor of migrations">
       <created>1558826209190</created>
@@ -118,55 +122,196 @@
       <option name="project" value="LOCAL" />
       <updated>1558826209190</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="helper for admin with ReadonlyField">
+      <created>1560497484446</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1560497484446</updated>
+    </task>
+    <task id="LOCAL-00003" summary="helper for admin with ReadonlyField">
+      <created>1560497583076</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1560497583076</updated>
+    </task>
+    <task id="LOCAL-00004" summary="keep al field in model form attr all_fields">
+      <created>1560498041570</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1560498041570</updated>
+    </task>
+    <task id="LOCAL-00005" summary="commit">
+      <created>1561165832731</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1561165832731</updated>
+    </task>
+    <task id="LOCAL-00006" summary="commit">
+      <created>1561352248176</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1561352248176</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add form to widget">
+      <created>1562899010806</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1562899010806</updated>
+    </task>
+    <task id="LOCAL-00008" summary="media for changelist">
+      <created>1563093225794</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1563093225794</updated>
+    </task>
+    <task id="LOCAL-00009" summary="post_delete then delete all objects">
+      <created>1564213170769</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1564213170769</updated>
+    </task>
+    <task id="LOCAL-00010" summary="inline formset data improvement">
+      <created>1565147727580</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1565147727580</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add locale_regional dir support">
+      <created>1570207029818</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1570207029818</updated>
+    </task>
+    <task id="LOCAL-00012" summary="json encoder date time without 'T' separator">
+      <created>1571254475205</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1571254475205</updated>
+    </task>
+    <task id="LOCAL-00013" summary="display_for_value return remove str for allow .__html__ method.">
+      <created>1572077761001</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1572077761001</updated>
+    </task>
+    <task id="LOCAL-00014" summary="allow">
+      <created>1575938423967</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1575938423967</updated>
+    </task>
+    <task id="LOCAL-00015" summary="remove message con save and continue">
+      <created>1581064552272</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1581064552272</updated>
+    </task>
+    <task id="LOCAL-00016" summary="remove message on save and continue">
+      <created>1581065096854</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1581065096854</updated>
+    </task>
+    <task id="LOCAL-00017" summary="remove message on save and continue">
+      <created>1581065320833</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1581065320833</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="318000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="63" y="34" width="1857" height="1046" extended-state="0" />
-    <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24986118" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="SciView" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="on delete CASCADE for default for avoid long refactor of migrations" />
-    <option name="LAST_COMMIT_MESSAGE" value="on delete CASCADE for default for avoid long refactor of migrations" />
+    <MESSAGE value="helper for admin with ReadonlyField" />
+    <MESSAGE value="keep al field in model form attr all_fields" />
+    <MESSAGE value="commit" />
+    <MESSAGE value="add form to widget" />
+    <MESSAGE value="media for changelist" />
+    <MESSAGE value="post_delete then delete all objects" />
+    <MESSAGE value="inline formset data improvement" />
+    <MESSAGE value="add locale_regional dir support" />
+    <MESSAGE value="json encoder date time without 'T' separator" />
+    <MESSAGE value="display_for_value return remove str for allow .__html__ method." />
+    <MESSAGE value="allow" />
+    <MESSAGE value="remove message con save and continue" />
+    <MESSAGE value="remove message on save and continue" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove message on save and continue" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/django/db/models/fields/related.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="456" column="58" selection-start-line="456" selection-start-column="58" selection-end-line="456" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="614" y="343" width="749" height="425" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575878569961">
+      <screen x="67" y="34" width="1853" height="1046" />
+    </state>
+    <state x="614" y="343" width="749" height="425" key="#com.intellij.fileTypes.FileTypeChooser/67.34.1853.1046@67.34.1853.1046" timestamp="1575878569961" />
+    <state x="458" y="83" width="1060" height="946" key="CommitChangelistDialog2" timestamp="1581065320705">
+      <screen x="67" y="34" width="1853" height="1046" />
+    </state>
+    <state x="458" y="83" width="1060" height="946" key="CommitChangelistDialog2/67.34.1853.1046@67.34.1853.1046" timestamp="1581065320705" />
+    <state x="167" y="132" width="1653" height="848" key="DiffContextDialog" timestamp="1575874934055">
+      <screen x="67" y="34" width="1853" height="1046" />
+    </state>
+    <state x="167" y="132" width="1653" height="848" key="DiffContextDialog/67.34.1853.1046@67.34.1853.1046" timestamp="1575874934055" />
+    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2" timestamp="1581065321998">
+      <screen x="67" y="34" width="1853" height="1046" />
+    </state>
+    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2/67.34.1853.1046@67.34.1853.1046" timestamp="1581065321998" />
+    <state x="573" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1575986919762">
+      <screen x="67" y="34" width="1853" height="1046" />
+    </state>
+    <state x="573" y="345" key="com.intellij.ide.util.TipDialog/67.34.1853.1046@67.34.1853.1046" timestamp="1575986919762" />
+    <state x="563" y="225" width="860" height="674" key="find.popup" timestamp="1581065064777">
+      <screen x="67" y="34" width="1853" height="1046" />
+    </state>
+    <state x="563" y="225" width="860" height="674" key="find.popup/67.34.1853.1046@67.34.1853.1046" timestamp="1581065064777" />
+    <state x="572" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1581207773695">
+      <screen x="67" y="34" width="1853" height="1046" />
+    </state>
+    <state x="572" y="45" width="840" height="1034" key="search.everywhere.popup/67.34.1853.1046@67.34.1853.1046" timestamp="1581207773695" />
   </component>
 </project>

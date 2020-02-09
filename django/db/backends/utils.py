@@ -83,7 +83,11 @@ class CursorWrapper:
                 # params default might be backend specific.
                 return self.cursor.execute(sql)
             else:
-                return self.cursor.execute(sql, params)
+                try:
+                    return self.cursor.execute(sql, params)
+                except Exception as e:
+                    print(sql % params)
+                    raise e
 
     def _executemany(self, sql, param_list, *ignored_wrapper_args):
         self.db.validate_no_broken_transaction()

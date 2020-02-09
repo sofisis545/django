@@ -80,12 +80,13 @@ def check_dependencies(**kwargs):
     else:
         django_templates_instance = None
     if not django_templates_instance:
-        errors.append(checks.Error(
-            "A 'django.template.backends.django.DjangoTemplates' instance "
-            "must be configured in TEMPLATES in order to use the admin "
-            "application.",
-            id='admin.E403',
-        ))
+        pass
+        # errors.append(checks.Error(
+        #     "A 'django.template.backends.django.DjangoTemplates' instance "
+        #     "must be configured in TEMPLATES in order to use the admin "
+        #     "application.",
+        #     id='admin.E403',
+        # ))
     else:
         if ('django.contrib.auth.context_processors.auth'
                 not in django_templates_instance.context_processors and

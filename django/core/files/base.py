@@ -117,6 +117,10 @@ class File(FileProxyMixin):
     def close(self):
         self.file.close()
 
+    def file_name(self):
+        """ Last file name added by sofisis """
+        return self.name.split('/')[-1]
+
 
 class ContentFile(File):
     """
