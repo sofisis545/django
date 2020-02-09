@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="602b27bf-f797-4f78-9215-7205cb1e6c8f" name="Default Changelist" comment="allow">
+    <list default="true" id="602b27bf-f797-4f78-9215-7205cb1e6c8f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/admin/checks.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/admin/checks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/core/files/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/core/files/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/db/backends/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/db/backends/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +110,7 @@
       <workItem from="1576135777134" duration="518000" />
       <workItem from="1576356118672" duration="19000" />
       <workItem from="1581064443780" duration="1478000" />
-      <workItem from="1581207770359" duration="58000" />
+      <workItem from="1581207770359" duration="85000" />
     </task>
     <task id="LOCAL-00001" summary="on delete CASCADE for default for avoid long refactor of migrations">
       <created>1558826209190</created>
@@ -234,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581065320833</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="allow">
+      <created>1581207846338</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1581207846338</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,28 +283,28 @@
     <MESSAGE value="add locale_regional dir support" />
     <MESSAGE value="json encoder date time without 'T' separator" />
     <MESSAGE value="display_for_value return remove str for allow .__html__ method." />
-    <MESSAGE value="allow" />
     <MESSAGE value="remove message con save and continue" />
     <MESSAGE value="remove message on save and continue" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove message on save and continue" />
+    <MESSAGE value="allow" />
+    <option name="LAST_COMMIT_MESSAGE" value="allow" />
   </component>
   <component name="WindowStateProjectService">
     <state x="614" y="343" width="749" height="425" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575878569961">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
     <state x="614" y="343" width="749" height="425" key="#com.intellij.fileTypes.FileTypeChooser/67.34.1853.1046@67.34.1853.1046" timestamp="1575878569961" />
-    <state x="458" y="83" width="1060" height="946" key="CommitChangelistDialog2" timestamp="1581065320705">
+    <state x="458" y="83" width="1060" height="946" key="CommitChangelistDialog2" timestamp="1581207846145">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
-    <state x="458" y="83" width="1060" height="946" key="CommitChangelistDialog2/67.34.1853.1046@67.34.1853.1046" timestamp="1581065320705" />
+    <state x="458" y="83" width="1060" height="946" key="CommitChangelistDialog2/67.34.1853.1046@67.34.1853.1046" timestamp="1581207846145" />
     <state x="167" y="132" width="1653" height="848" key="DiffContextDialog" timestamp="1575874934055">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
     <state x="167" y="132" width="1653" height="848" key="DiffContextDialog/67.34.1853.1046@67.34.1853.1046" timestamp="1575874934055" />
-    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2" timestamp="1581065321998">
+    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2" timestamp="1581207848970">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
-    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2/67.34.1853.1046@67.34.1853.1046" timestamp="1581065321998" />
+    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2/67.34.1853.1046@67.34.1853.1046" timestamp="1581207848970" />
     <state x="573" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1575986919762">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
