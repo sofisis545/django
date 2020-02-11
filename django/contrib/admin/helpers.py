@@ -8,6 +8,7 @@ from django.contrib.admin.utils import (
 )
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.fields.related import ManyToManyRel
+from django.forms import BaseModelFormSet
 from django.forms.utils import flatatt
 from django.template.defaultfilters import capfirst, linebreaksbr
 from django.utils.html import conditional_escape, format_html
@@ -41,15 +42,30 @@ class AdminForm:
         if readonly_fields is None:
             readonly_fields = ()
         self.readonly_fields = readonly_fields
+        self._iter_position = 0
 
     def __iter__(self):
-        for name, options in self.fieldsets:
-            yield Fieldset(
-                self.form, name,
-                readonly_fields=self.readonly_fields,
-                model_admin=self.model_admin,
-                **options
-            )
+        # override by sofisis for allow next method
+        return self
+
+    def __next__(self):
+        try:
+            out = self[self._iter_position]
+        except IndexError:
+            self._iter_position = 0
+            raise StopIteration()
+        else:
+            self._iter_position += 1
+            return out
+
+    def __getitem__(self, item):
+        name, options = self.fieldsets[item]
+        return Fieldset(
+            self.form, name,
+            readonly_fields=self.readonly_fields,
+            model_admin=self.model_admin,
+            **options
+        )
 
     @property
     def errors(self):
@@ -232,7 +248,7 @@ class InlineAdminFormSet:
     """
     A wrapper around an inline formset for use in the admin system.
     """
-    def __init__(self, inline, formset, fieldsets, prepopulated_fields=None,
+    def __init__(self, inline, formset: BaseModelFormSet, fieldsets, prepopulated_fields=None,
                  readonly_fields=None, model_admin=None, has_add_permission=True,
                  has_change_permission=True, has_delete_permission=True,
                  has_view_permission=True):
