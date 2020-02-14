@@ -4,7 +4,8 @@ Serialize data to/from JSON
 
 import datetime
 import decimal
-import json
+# import json
+import simplejson as json
 import uuid
 
 from django.core.serializers.base import DeserializationError
@@ -14,6 +15,7 @@ from django.core.serializers.python import (
 from django.utils.duration import duration_iso_string
 from django.utils.functional import Promise
 from django.utils.timezone import is_aware
+
 
 
 class Serializer(PythonSerializer):
