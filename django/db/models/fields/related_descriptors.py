@@ -408,15 +408,18 @@ class ReverseOneToOneDescriptor:
                     self.related.field.set_cached_value(rel_obj, instance)
             self.related.set_cached_value(instance, rel_obj)
 
-        if rel_obj is None:
-            raise self.RelatedObjectDoesNotExist(
-                "%s has no %s." % (
-                    instance.__class__.__name__,
-                    self.related.get_accessor_name()
-                )
-            )
-        else:
-            return rel_obj
+        # if rel_obj is None:
+        #     raise self.RelatedObjectDoesNotExist(
+        #         "%s has no %s." % (
+        #             instance.__class__.__name__,
+        #             self.related.get_accessor_name()
+        #         )
+        #     )
+        # else:
+        #     return rel_obj
+        # comment by Sofisis, is easy validate a none that
+        # hanle a Exception
+        return rel_obj
 
     def __set__(self, instance, value):
         """
