@@ -368,6 +368,7 @@ class AnonymousUser:
     is_staff = False
     is_active = False
     is_superuser = False
+    is_admin = False  #added by sofisis
     _groups = EmptyManager(Group)
     _user_permissions = EmptyManager(Permission)
 
