@@ -24,7 +24,9 @@ def register(*models, site=None):
         if not issubclass(admin_class, ModelAdmin):
             raise ValueError('Wrapped class must subclass ModelAdmin.')
 
-        admin_site.register(models, admin_class=admin_class)
+        # change by sofisis for set one model for one admin
+        for model in models:
+            admin_site.register(model, admin_class=admin_class)
 
         return admin_class
     return _model_admin_wrapper
