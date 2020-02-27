@@ -328,7 +328,7 @@ class BaseModelAdmin(metaclass=forms.MediaDefiningClass):
             return self.fieldsets
         return [(None, {'fields': self.get_fields(request, obj)})]
 
-    def get_inlines(self, request, obj):
+    def get_inlines(self, request, obj=None):
         """Hook for specifying custom inlines."""
         return self.inlines
 
@@ -1245,11 +1245,18 @@ class ModelAdmin(BaseModelAdmin):
             attr = str(to_field) if to_field else opts.pk.attname
             value = request.resolver_match.kwargs['object_id']
             new_value = obj.serializable_value(attr)
+
+            # add by Sofisis for get the changed data
+            changed_data = None
+            if hasattr(obj, 'changed_data'):
+                changed_data = obj.changed_data()
+
             popup_response_data = json.dumps({
                 'action': 'change',
                 'value': str(value),
                 'obj': str(obj),
                 'new_value': str(new_value),
+                'changed_data': changed_data,
             })
             return TemplateResponse(request, self.popup_response_template or [
                 'admin/%s/%s/popup_response.html' % (opts.app_label, opts.model_name),
