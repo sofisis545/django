@@ -86,7 +86,7 @@ class CursorWrapper:
                 try:
                     return self.cursor.execute(sql, params)
                 except Exception as e:
-                    print(sql % params)
+                    print(sql, params)
                     raise e
 
     def _executemany(self, sql, param_list, *ignored_wrapper_args):
