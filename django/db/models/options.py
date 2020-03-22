@@ -32,7 +32,7 @@ DEFAULT_NAMES = (
     'auto_created', 'index_together', 'apps', 'default_permissions',
     'select_on_save', 'default_related_name', 'required_db_features',
     'required_db_vendor', 'base_manager_name', 'default_manager_name',
-    'indexes', 'constraints',
+    'indexes', 'constraints', 'super_user_perms',
 )
 
 
@@ -93,6 +93,7 @@ class Options:
         self.select_on_save = False
         self.default_permissions = ('add', 'change', 'delete', 'view')
         self.permissions = []
+        self.super_user_perms = []  # permissions that only super user can give
         self.object_name = None
         self.app_label = app_label
         self.get_latest_by = None

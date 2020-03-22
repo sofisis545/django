@@ -177,10 +177,12 @@ class BaseModelAdmin(metaclass=forms.MediaDefiningClass):
 
         # If we've got overrides for the formfield defined, use 'em. **kwargs
         # passed to formfield_for_dbfield override the defaults.
-        for klass in db_field.__class__.mro():
-            if klass in self.formfield_overrides:
-                kwargs = {**copy.deepcopy(self.formfield_overrides[klass]), **kwargs}
-                return db_field.formfield(**kwargs)
+        # for klass in db_field.__class__.mro():
+        # override by sofisis for only set widget to current field and not parents class
+        klass = db_field.__class__
+        if klass in self.formfield_overrides:
+            kwargs = {**copy.deepcopy(self.formfield_overrides[klass]), **kwargs}
+            return db_field.formfield(**kwargs)
 
         # For any other type of field, just call its formfield() method.
         return db_field.formfield(**kwargs)

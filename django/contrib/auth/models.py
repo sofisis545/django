@@ -60,6 +60,7 @@ class Permission(models.Model):
         verbose_name=_('content type'),
     )
     codename = models.CharField(_('codename'), max_length=100)
+    is_super_user_perm = models.BooleanField(_('Only super user'), default=False)
 
     objects = PermissionManager()
 
