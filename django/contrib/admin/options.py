@@ -1145,18 +1145,25 @@ class ModelAdmin(BaseModelAdmin):
             'is_popup_var': IS_POPUP_VAR,
             'app_label': app_label,
         })
-        if add and self.add_form_template is not None:
-            form_template = self.add_form_template
+        if add:
+            form_template = self.get_add_template(request)
         else:
-            form_template = self.change_form_template
+            form_template = self.get_change_form_template(request)
 
         request.current_app = self.admin_site.name
 
-        return TemplateResponse(request, form_template or [
-            "admin/%s/%s/change_form.html" % (app_label, opts.model_name),
-            "admin/%s/change_form.html" % app_label,
+        return TemplateResponse(request, form_template, context)
+
+    def get_change_form_template(self, request):
+        opts = self.opts
+        return self.change_form_template or [
+            "admin/%s/%s/change_form.html" % (opts.app_label, opts.model_name),
+            "admin/%s/change_form.html" % opts.app_label,
             "admin/change_form.html"
-        ], context)
+        ]
+
+    def get_add_template(self, request):
+        return self.add_form_template or self.get_change_form_template(request)
 
     def response_add(self, request, obj, post_url_continue=None):
         """
@@ -1816,11 +1823,15 @@ class ModelAdmin(BaseModelAdmin):
 
         request.current_app = self.admin_site.name
 
-        return TemplateResponse(request, self.change_list_template or [
-            'admin/%s/%s/change_list.html' % (app_label, opts.model_name),
-            'admin/%s/change_list.html' % app_label,
+        return TemplateResponse(request, self.get_change_list_template(request), context)
+
+    def get_change_list_template(self, request):
+        opts = self.opts
+        return self.change_list_template or [
+            'admin/%s/%s/change_list.html' % (opts.app_label, opts.model_name),
+            'admin/%s/change_list.html' % opts.app_label,
             'admin/change_list.html'
-        ], context)
+        ]
 
     def get_deleted_objects(self, objs, request):
         """
