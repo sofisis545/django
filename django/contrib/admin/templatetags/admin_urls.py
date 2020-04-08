@@ -50,6 +50,10 @@ def add_preserved_filters(context, url, popup=False, to_field=None):
         from django.contrib.admin.options import TO_FIELD_VAR
         merged_qs[TO_FIELD_VAR] = to_field
 
+    request = context.get('request')
+    if request and request.GET.get('_next'):
+        merged_qs['_next'] = request.GET.get('_next')
+
     merged_qs.update(parsed_qs)
 
     parsed_url[4] = urlencode(merged_qs)
