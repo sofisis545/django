@@ -599,14 +599,15 @@ class Field(RegisterLookupMixin):
             return
 
         if self.choices is not None and value not in self.empty_values:
-            for option_key, option_value in self.choices:
-                if isinstance(option_value, (list, tuple)):
-                    # This is an optgroup, so look inside the group for
-                    # options.
-                    for optgroup_key, optgroup_value in option_value:
-                        if value == optgroup_key:
-                            return
-                elif value == option_key:
+            # use flat choices because was override for get from db
+            for option_key, option_value in self.flatchoices:
+                # if isinstance(option_value, (list, tuple)):
+                #     # This is an optgroup, so look inside the group for
+                #     # options.
+                #     for optgroup_key, optgroup_value in option_value:
+                #         if value == optgroup_key:
+                #             return
+                if value == option_key:
                     return
             raise exceptions.ValidationError(
                 self.error_messages['invalid_choice'],

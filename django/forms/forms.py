@@ -344,8 +344,9 @@ class BaseForm:
         for field, error_list in error.items():
             if field not in self.errors:
                 if field != NON_FIELD_ERRORS and field not in self.fields:
-                    raise ValueError(
-                        "'%s' has no field named '%s'." % (self.__class__.__name__, field))
+                    self._errors[field] = self.error_class(error_class='nonfield')
+                    # raise ValueError(
+                    #     "'%s' has no field named '%s'." % (self.__class__.__name__, field))
                 if field == NON_FIELD_ERRORS:
                     self._errors[field] = self.error_class(error_class='nonfield')
                 else:
