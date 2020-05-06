@@ -430,7 +430,7 @@ def display_for_value(value, empty_value_display, boolean=False):
     elif isinstance(value, (datetime.date, datetime.time)):
         return formats.localize(value)
     elif isinstance(value, (int, decimal.Decimal, float)):
-        return formats.number_format(value)
+        return formats.number_format(value, force_grouping=True)
     elif isinstance(value, (list, tuple)):
         return ', '.join(str(v) for v in value)
     else:

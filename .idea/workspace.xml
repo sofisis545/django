@@ -40,12 +40,12 @@
   <component name="ProjectId" id="1OaQFgNslLpjbgJXLiuryEEaPA3" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
@@ -56,18 +56,6 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -111,6 +99,14 @@
       <workItem from="1576356118672" duration="19000" />
       <workItem from="1581064443780" duration="1478000" />
       <workItem from="1581207770359" duration="85000" />
+      <workItem from="1584837713605" duration="13000" />
+      <workItem from="1584869574013" duration="130000" />
+      <workItem from="1585034857686" duration="65000" />
+      <workItem from="1585067180443" duration="30000" />
+      <workItem from="1585102185631" duration="22000" />
+      <workItem from="1586367122093" duration="59000" />
+      <workItem from="1587678361351" duration="65000" />
+      <workItem from="1588037216763" duration="13000" />
     </task>
     <task id="LOCAL-00001" summary="on delete CASCADE for default for avoid long refactor of migrations">
       <created>1558826209190</created>
@@ -238,20 +234,53 @@
       <option name="project" value="LOCAL" />
       <updated>1581207846338</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="- Support for super user permissions&#10;- override_form_fields only to current class&#10;  not to parent">
+      <created>1584869693001</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1584869693001</updated>
+    </task>
+    <task id="LOCAL-00020" summary="- Add method for get change form and list templates">
+      <created>1585034913641</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1585034913641</updated>
+    </task>
+    <task id="LOCAL-00021" summary="- Add method for get change form and list templates">
+      <created>1585102195216</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1585102195216</updated>
+    </task>
+    <task id="LOCAL-00022" summary="- Add _next param in preserved filters">
+      <created>1586367165660</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1586367165660</updated>
+    </task>
+    <task id="LOCAL-00023" summary="- Support choice edition">
+      <created>1587678415343</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1587678415343</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -270,6 +299,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="on delete CASCADE for default for avoid long refactor of migrations" />
@@ -286,29 +316,25 @@
     <MESSAGE value="remove message con save and continue" />
     <MESSAGE value="remove message on save and continue" />
     <MESSAGE value="allow" />
-    <option name="LAST_COMMIT_MESSAGE" value="allow" />
+    <MESSAGE value="- Support for super user permissions&#10;- override_form_fields only to current class&#10;  not to parent" />
+    <MESSAGE value="- Add method for get change form and list templates" />
+    <MESSAGE value="- Add _next param in preserved filters" />
+    <MESSAGE value="- Support choice edition" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Support choice edition" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="614" y="343" width="749" height="425" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575878569961">
+    <state x="458" y="83" width="1096" height="946" key="CommitChangelistDialog2" timestamp="1587678415219">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
-    <state x="614" y="343" width="749" height="425" key="#com.intellij.fileTypes.FileTypeChooser/67.34.1853.1046@67.34.1853.1046" timestamp="1575878569961" />
-    <state x="458" y="83" width="1060" height="946" key="CommitChangelistDialog2" timestamp="1581207846145">
+    <state x="458" y="83" width="1096" height="946" key="CommitChangelistDialog2/67.34.1853.1046@67.34.1853.1046" timestamp="1587678415219" />
+    <state x="167" y="132" width="1653" height="848" key="DiffContextDialog" timestamp="1585067208159">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
-    <state x="458" y="83" width="1060" height="946" key="CommitChangelistDialog2/67.34.1853.1046@67.34.1853.1046" timestamp="1581207846145" />
-    <state x="167" y="132" width="1653" height="848" key="DiffContextDialog" timestamp="1575874934055">
+    <state x="167" y="132" width="1653" height="848" key="DiffContextDialog/67.34.1853.1046@67.34.1853.1046" timestamp="1585067208159" />
+    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2" timestamp="1587678416784">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
-    <state x="167" y="132" width="1653" height="848" key="DiffContextDialog/67.34.1853.1046@67.34.1853.1046" timestamp="1575874934055" />
-    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2" timestamp="1581207848970">
-      <screen x="67" y="34" width="1853" height="1046" />
-    </state>
-    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2/67.34.1853.1046@67.34.1853.1046" timestamp="1581207848970" />
-    <state x="573" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1575986919762">
-      <screen x="67" y="34" width="1853" height="1046" />
-    </state>
-    <state x="573" y="345" key="com.intellij.ide.util.TipDialog/67.34.1853.1046@67.34.1853.1046" timestamp="1575986919762" />
+    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2/67.34.1853.1046@67.34.1853.1046" timestamp="1587678416784" />
     <state x="563" y="225" width="860" height="674" key="find.popup" timestamp="1581065064777">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
