@@ -158,7 +158,9 @@ class BaseForm:
     def __getitem__(self, name):
         """Return a BoundField with the given name."""
         try:
-            field = self.all_fields.get(name) or self.fields[name]
+            # first search in fields then in all_fields. not change this
+            # because fields and all_fields are differente, cause error in interation
+            field = self.fields.get(name) or self.all_fields[name]
         except KeyError:
             raise KeyError(
                 "Key '%s' not found in '%s'. Choices are: %s." % (
