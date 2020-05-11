@@ -275,16 +275,16 @@ class ModelFormMetaclass(DeclarativeFieldsMetaclass):
             # Override default model fields with any custom declared ones
             # (plus, include all the other declared fields).
             fields.update(new_class.declared_fields)
-            all_fields = dict(fields)
+            base_all_fields = dict(fields)
             exclude = opts.exclude or []
             fields = {k: v for k, v in fields.items() if k not in exclude}
 
         else:
             fields = new_class.declared_fields
-            all_fields = dict(new_class.declared_fields)
+            base_all_fields = dict(new_class.declared_fields)
 
         new_class.base_fields = fields
-        new_class.all_fields = all_fields
+        new_class.base_all_fields = base_all_fields
         return new_class
 
 

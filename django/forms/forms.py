@@ -48,7 +48,7 @@ class DeclarativeFieldsMetaclass(MediaDefiningClass):
                     declared_fields.pop(attr)
 
         new_class.base_fields = declared_fields
-        new_class.all_fields = declared_fields
+        new_class.base_all_fields = declared_fields
         new_class.declared_fields = declared_fields
 
         return new_class
@@ -89,6 +89,8 @@ class BaseForm:
         # Instances should always modify self.fields; they should not modify
         # self.base_fields.
         self.fields = copy.deepcopy(self.base_fields)
+        # must to bo deepcopy for not override fields and widgets
+        self.all_fields = copy.deepcopy(self.base_all_fields)
         self._bound_fields_cache = {}
         self.order_fields(self.field_order if field_order is None else field_order)
 
