@@ -48,6 +48,7 @@ class DeclarativeFieldsMetaclass(MediaDefiningClass):
                     declared_fields.pop(attr)
 
         new_class.base_fields = declared_fields
+        new_class.all_fields = declared_fields
         new_class.declared_fields = declared_fields
 
         return new_class
@@ -155,7 +156,7 @@ class BaseForm:
     def __getitem__(self, name):
         """Return a BoundField with the given name."""
         try:
-            field = self.fields[name]
+            field = self.all_fields.get(name) or self.fields[name]
         except KeyError:
             raise KeyError(
                 "Key '%s' not found in '%s'. Choices are: %s." % (

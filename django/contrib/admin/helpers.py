@@ -137,11 +137,15 @@ class Fieldline:
 
 
 class AdminField:
-    def __init__(self, form, field, is_first):
+    is_readonly = False
+
+    def __init__(self, form, field, is_first, model_admin=None):
+        self.field_name = field
+        self.form = form
         self.field = form[field]  # A django.forms.BoundField instance
         self.is_first = is_first  # Whether this field is first on the line
         self.is_checkbox = isinstance(self.field.field.widget, forms.CheckboxInput)
-        self.is_readonly = False
+        self.model_admin = model_admin
 
     def label_tag(self):
         classes = []
@@ -167,51 +171,19 @@ class AdminField:
     def errors(self):
         return mark_safe(self.field.errors.as_ul())
 
+    def contents(self):
+        return self.field
 
-class AdminReadonlyField:
+
+class AdminReadonlyField(AdminField):
+    is_readonly = True
+
     def __init__(self, form, field, is_first, model_admin=None):
-        # Make self.field look a little bit like a field. This means that
-        # {{ field.name }} must be a useful class name to identify the field.
-        # For convenience, store other field-related data here too.
-        if callable(field):
-            class_name = field.__name__ if field.__name__ != '<lambda>' else ''
-        else:
-            class_name = field
-
-        if form._meta.labels and class_name in form._meta.labels:
-            label = form._meta.labels[class_name]
-        else:
-            label = label_for_field(field, form._meta.model, model_admin, form=form)
-
-        if form._meta.help_texts and class_name in form._meta.help_texts:
-            help_text = form._meta.help_texts[class_name]
-        else:
-            help_text = help_text_for_field(class_name, form._meta.model)
-
-        self.label = label
-
-        if field in form.all_fields:
-
-            self.field = form.all_fields[field]
-            self.field.is_hidden = self.field.widget.is_hidden
-            self.field.name = field
-            self.field_name = field
-        else:
-            self.field = field
-            self.field_name = field
-        self.form = form
-        self.model_admin = model_admin
-        self.is_first = is_first
+        super().__init__(form, field, is_first, model_admin)
         self.is_checkbox = False
-        self.is_readonly = True
-        self.empty_value_display = model_admin.get_empty_value_display()
 
-    def label_tag(self):
-        attrs = {}
-        if not self.is_first:
-            attrs["class"] = "inline"
-        # label = self.field.label
-        return format_html('<label{}>{}{}</label>', flatatt(attrs), capfirst(self.label), self.form.label_suffix)
+    def errors(self):
+        return ''
 
     def contents(self):
         from django.contrib.admin.templatetags.admin_list import _boolean_icon
