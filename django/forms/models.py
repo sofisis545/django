@@ -259,6 +259,9 @@ class ModelFormMetaclass(DeclarativeFieldsMetaclass):
             # make sure opts.fields doesn't specify an invalid field
             none_model_fields = {k for k, v in fields.items() if not v}
             missing_fields = none_model_fields.difference(new_class.declared_fields)
+            exclude = getattr(opts, 'exclude', None)
+            if exclude and exclude != ALL_FIELDS:
+                missing_fields = missing_fields.union(exclude)
 
             # try add readonly field from obj attribute,
             for missing_field in missing_fields:
