@@ -1610,10 +1610,12 @@ class ModelAdmin(BaseModelAdmin):
 
         if add:
             title = _('Add %s')
-        elif self.has_change_permission(request, obj):
-            title = _('Change %s')
+        # elif self.has_change_permission(request, obj):
+        #     title = _('Change %s')
+        # else:
+        #     title = _('View %s')
         else:
-            title = _('View %s')
+            title = '%s'
         context = {
             **self.admin_site.each_context(request),
             'title': title % opts.verbose_name,

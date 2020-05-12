@@ -32,7 +32,7 @@ DEFAULT_NAMES = (
     'auto_created', 'index_together', 'apps', 'default_permissions',
     'select_on_save', 'default_related_name', 'required_db_features',
     'required_db_vendor', 'base_manager_name', 'default_manager_name',
-    'indexes', 'constraints', 'super_user_perms',
+    'indexes', 'constraints', 'super_user_perms', 'icon',
 )
 
 
