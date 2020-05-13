@@ -180,10 +180,30 @@ class AdminReadonlyField(AdminField):
 
     def __init__(self, form, field, is_first, model_admin=None):
         super().__init__(form, field, is_first, model_admin)
+        class_name = field
+        if form._meta.help_texts and class_name in form._meta.help_texts:
+            help_text = form._meta.help_texts[class_name]
+        else:
+            help_text = help_text_for_field(class_name, form._meta.model)
+        self.field.field.help_text = help_text
+
         self.is_checkbox = False
 
     def errors(self):
         return ''
+
+    def label_tag(self):
+        class_name = self.field_name
+        form = self.form
+        if form._meta.labels and class_name in form._meta.labels:
+            label = form._meta.labels[class_name]
+        else:
+            label = label_for_field(self.field_name, form._meta.model, self.model_admin, form=form)
+
+        attrs = {}
+        if not self.is_first:
+            attrs["class"] = "inline"
+        return format_html('<label{}>{}{}</label>', flatatt(attrs), capfirst(label), self.form.label_suffix)
 
     def contents(self):
         from django.contrib.admin.templatetags.admin_list import _boolean_icon
