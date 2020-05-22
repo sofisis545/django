@@ -152,6 +152,8 @@ class Options:
         from django.db.backends.utils import truncate_name
 
         cls._meta = self
+        # add by Sofisis for convert in public attribute
+        cls.meta = self
         self.model = cls
         # First, construct the default values for these options.
         self.object_name = cls.__name__
