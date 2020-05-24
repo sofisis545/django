@@ -686,19 +686,19 @@ class FilterExpression:
             arg_vals = []
             for lookup, arg in args:
                 if not lookup:
-                    arg_vals.append(mark_safe(arg))
+                    arg_vals.append(arg)
                 else:
                     arg_vals.append(arg.resolve(context))
-            if getattr(func, 'expects_localtime', False):
-                obj = template_localtime(obj, context.use_tz)
-            if getattr(func, 'needs_autoescape', False):
-                new_obj = func(obj, autoescape=context.autoescape, *arg_vals)
-            else:
-                new_obj = func(obj, *arg_vals)
-            if getattr(func, 'is_safe', False) and isinstance(obj, SafeData):
-                obj = mark_safe(new_obj)
-            else:
-                obj = new_obj
+            # if getattr(func, 'expects_localtime', False):
+            #     obj = template_localtime(obj, context.use_tz)
+            # if getattr(func, 'needs_autoescape', False):
+            #     new_obj = func(obj, autoescape=context.autoescape, *arg_vals)
+            # else:
+            new_obj = func(obj, *arg_vals)
+            # if getattr(func, 'is_safe', False) and isinstance(obj, SafeData):
+            #     obj = mark_safe(new_obj)
+            # else:
+            obj = new_obj
         return obj
 
     def args_check(name, func, provided):
@@ -778,7 +778,7 @@ class Variable:
             # If it's wrapped with quotes (single or double), then
             # we're also dealing with a literal.
             try:
-                self.literal = mark_safe(unescape_string_literal(var))
+                self.literal = unescape_string_literal(var)
             except ValueError:
                 # Otherwise we'll set self.lookups so that resolve() knows we're
                 # dealing with a bonafide variable
@@ -797,9 +797,9 @@ class Variable:
             # We're dealing with a literal, so it's already been "resolved"
             value = self.literal
         if self.translate:
-            is_safe = isinstance(value, SafeData)
+            # is_safe = isinstance(value, SafeData)
             msgid = value.replace('%', '%%')
-            msgid = mark_safe(msgid) if is_safe else msgid
+            # msgid = mark_safe(msgid) if is_safe else msgid
             if self.message_context:
                 return pgettext_lazy(self.message_context, msgid)
             else:
@@ -937,7 +937,7 @@ class NodeList(list):
             else:
                 bit = node
             bits.append(str(bit))
-        return mark_safe(''.join(bits))
+        return ''.join(bits)
 
     def get_nodes_by_type(self, nodetype):
         "Return a list of all nodes of the given type"
@@ -964,14 +964,15 @@ def render_value_in_context(value, context):
     means escaping, if required, and conversion to a string. If value is a
     string, it's expected to already be translated.
     """
-    value = template_localtime(value, use_tz=context.use_tz)
-    value = localize(value, use_l10n=context.use_l10n)
-    if context.autoescape:
-        if not issubclass(type(value), str):
-            value = str(value)
-        return conditional_escape(value)
-    else:
-        return str(value)
+    # value = template_localtime(value, use_tz=context.use_tz)
+    # value = localize(value, use_l10n=context.use_l10n)
+    return str(value)
+    # if context.autoescape:
+    #     if not issubclass(type(value), str):
+    #         value = str(value)
+    #     return conditional_escape(value)
+    # else:
+    #     return str(value)
 
 
 class VariableNode(Node):

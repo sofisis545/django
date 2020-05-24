@@ -1,3 +1,5 @@
+from profilehooks import profile
+
 from django.http import HttpResponse
 
 from .loader import get_template, select_template
@@ -93,6 +95,7 @@ class SimpleTemplateResponse(HttpResponse):
         else:
             self._post_render_callbacks.append(callback)
 
+    # @profile(immediate=True, sort=['tottime'], dirs=True)
     def render(self):
         """Render (thereby finalizing) the content of the response.
 

@@ -385,6 +385,7 @@ def unescape_string_literal(s):
     """
     if s[0] not in "\"'" or s[-1] != s[0]:
         raise ValueError("Not a string literal: %r" % s)
+    # return s
     quote = s[0]
     return s[1:-1].replace(r'\%s' % quote, quote).replace(r'\\', '\\')
 

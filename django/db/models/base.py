@@ -3,6 +3,7 @@ import inspect
 import warnings
 from functools import partialmethod
 from itertools import chain
+from threading import current_thread
 
 from django.apps import apps
 from django.conf import settings

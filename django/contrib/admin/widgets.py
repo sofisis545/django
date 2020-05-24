@@ -311,6 +311,28 @@ class RelatedFieldWidgetWrapper(forms.Widget):
     def id_for_label(self, id_):
         return self.widget.id_for_label(id_)
 
+    def render(self, name, value, attrs=None, renderer=None):
+        ctx = self.get_context(name, value, attrs)
+
+        s = f'<div class="related-widget-wrapper">{ctx["rendered_widget"]}'
+        if ctx['can_change_related']:
+            s += f'<a class="related-widget-wrapper-link change-related" id="change_id_{ctx["name"]}" '\
+                 f'data-href-template="{ctx["change_related_template_url"]}?{ctx["url_params"]}">' \
+                 f'<span title="{_("Change selected %(model)s")}" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'
+
+        if ctx["can_add_related"]:
+            s += f'<a class="related-widget-wrapper-link add-related" id="add_id_{ctx["name"]}" ' \
+                 f'href="{ctx["add_related_url"]}?{ctx["url_params"]}">' \
+                 f'<span title="{_("Add another %(model)s")}" class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>'
+
+        if ctx["can_delete_related"]:
+            s += f'<a class="related-widget-wrapper-link delete-related" id="delete_id_{ctx["name"]}" ' \
+                 f'data-href-template="{ctx["delete_related_template_url"]}?{ctx["url_params"]}">' \
+                 f'<span title="{_("Delete selected %(model)s")}" class="glyphicon glyphicon-minus" ' \
+                 f'aria-hidden="true"></span></a>'
+        s += '</div>'
+        return s
+
 
 class AdminTextareaWidget(forms.Textarea):
     def __init__(self, attrs=None):

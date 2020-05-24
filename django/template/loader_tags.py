@@ -73,7 +73,7 @@ class BlockNode(Node):
         render_context = self.context.render_context
         if (BLOCK_CONTEXT_KEY in render_context and
                 render_context[BLOCK_CONTEXT_KEY].get_block(self.name) is not None):
-            return mark_safe(self.render(self.context))
+            return self.render(self.context)
         return ''
 
 

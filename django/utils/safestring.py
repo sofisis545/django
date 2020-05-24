@@ -18,25 +18,25 @@ class SafeData:
         return self
 
 
-class SafeString(str, SafeData):
-    """
-    A str subclass that has been specifically marked as "safe" for HTML output
-    purposes.
-    """
-    def __add__(self, rhs):
-        """
-        Concatenating a safe string with another safe bytestring or
-        safe string is safe. Otherwise, the result is no longer safe.
-        """
-        t = super().__add__(rhs)
-        if isinstance(rhs, SafeData):
-            return SafeString(t)
-        return t
+# class SafeString(str, SafeData):
+#     """
+#     A str subclass that has been specifically marked as "safe" for HTML output
+#     purposes.
+#     """
+#     def __add__(self, rhs):
+#         """
+#         Concatenating a safe string with another safe bytestring or
+#         safe string is safe. Otherwise, the result is no longer safe.
+#         """
+#         t = super().__add__(rhs)
+#         if isinstance(rhs, SafeData):
+#             return SafeString(t)
+#         return t
+#
+#     def __str__(self):
+#         return self
 
-    def __str__(self):
-        return self
-
-
+SafeString = str
 SafeText = SafeString  # For backwards compatibility since Django 2.0.
 
 
@@ -56,6 +56,7 @@ def mark_safe(s):
 
     Can be called multiple times on a single string.
     """
+    return str(s)
     if hasattr(s, '__html__'):
         return s
     if callable(s):

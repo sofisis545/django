@@ -238,6 +238,15 @@ class Widget(metaclass=MediaDefiningClass):
         }
         return context
 
+    def get_widget_attrs(self, widget):
+        s = ''
+        for name, value in widget['attrs'].items():
+            if value is not False:
+                s += f' {name}'
+                if value is not True:
+                    s += f'="{value}"'
+        return s
+
     def render(self, name, value, attrs=None, renderer=None):
         """Render the widget as an HTML string."""
         context = self.get_context(name, value, attrs)
@@ -296,10 +305,17 @@ class Input(Widget):
         context['widget']['type'] = self.input_type
         return context
 
+    def render(self, name, value, attrs=None, renderer=None):
+        """Render the widget as an HTML string."""
+        ctx = self.get_context(name, value, attrs)
+        widget = ctx['widget']
+        value = widget['value'] or ''
+        return f'<input type="{widget["type"]}" name="{widget["name"]}" value="{value}" {self.get_widget_attrs(widget)}>'
+
 
 class TextInput(Input):
     input_type = 'text'
-    template_name = 'django/forms/widgets/text.html'
+    # template_name = 'django/forms/widgets/text.html'
 
 
 class NumberInput(Input):
@@ -683,6 +699,23 @@ class Select(ChoiceWidget):
     add_id_index = False
     checked_attribute = {'selected': True}
     option_inherits_attrs = False
+
+    def _render_option(self, widget, value) -> str:
+        s = ''
+        for group_name, group_choices, group_index in widget['optgroups']:
+            if group_name:
+                s += f'<optgroup label="{group_name}">'
+            for option in group_choices:
+                s += f'<option value="{option["value"]}" {self.get_widget_attrs(option)}> {option["label"]}</option>'
+
+            if group_name:
+                s += f'</optgroup>'
+        return s
+
+    def render(self, name, value, attrs=None, renderer=None):
+        ctx = self.get_context(name, value, attrs)
+        widget = ctx['widget']
+        return f'<select name="{widget["name"]}" {self.get_widget_attrs(widget)}>{self._render_option(widget, value)}</select>'
 
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)

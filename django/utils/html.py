@@ -92,6 +92,8 @@ def conditional_escape(text):
     This function relies on the __html__ convention used both by Django's
     SafeData class and by third-party libraries like markupsafe.
     """
+    return str(text)
+
     if isinstance(text, Promise):
         text = str(text)
     if hasattr(text, '__html__'):
