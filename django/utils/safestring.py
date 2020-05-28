@@ -57,8 +57,8 @@ def mark_safe(s):
     Can be called multiple times on a single string.
     """
     return str(s)
-    if hasattr(s, '__html__'):
-        return s
-    if callable(s):
-        return _safety_decorator(mark_safe, s)
-    return SafeString(s)
+    # if hasattr(s, '__html__'):
+    #     return s
+    # if callable(s):
+    #     return _safety_decorator(mark_safe, s)
+    # return SafeString(s)
