@@ -1,4 +1,4 @@
-from profilehooks import profile
+# from profilehooks import profile
 
 from django.http import HttpResponse
 

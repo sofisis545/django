@@ -40,22 +40,17 @@
         <item name="GROUP_NODE:stable" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="602b27bf-f797-4f78-9215-7205cb1e6c8f" name="Default Changelist" comment="">
+    <list default="true" id="602b27bf-f797-4f78-9215-7205cb1e6c8f" name="Default Changelist" comment="- Fast form fields rendering">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/admin/templates/admin/app_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/admin/templates/admin/app_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/contrib/admin/widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/contrib/admin/widgets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/db/models/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/db/models/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/forms/widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/forms/widgets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/template/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/template/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/template/library.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/template/library.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/template/loader_tags.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/template/loader_tags.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/template/response.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/template/response.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/utils/html.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/utils/html.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/utils/safestring.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/utils/safestring.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/utils/text.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/utils/text.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +155,8 @@
       <workItem from="1589378530427" duration="629000" />
       <workItem from="1590163285484" duration="46000" />
       <workItem from="1590260461185" duration="6524000" />
+      <workItem from="1590335029643" duration="42000" />
+      <workItem from="1590637970796" duration="684000" />
     </task>
     <task id="LOCAL-00001" summary="on delete CASCADE for default for avoid long refactor of migrations">
       <created>1558826209190</created>
@@ -378,7 +375,28 @@
       <option name="project" value="LOCAL" />
       <updated>1590163315129</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="- Fast form fields rendering">
+      <created>1590335060090</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1590335060090</updated>
+    </task>
+    <task id="LOCAL-00033" summary="- Fast form fields rendering">
+      <created>1590638309223</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1590638309223</updated>
+    </task>
+    <task id="LOCAL-00034" summary="- Fast form fields rendering">
+      <created>1590638340573</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1590638340573</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,7 +407,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -411,7 +441,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="on delete CASCADE for default for avoid long refactor of migrations" />
     <MESSAGE value="helper for admin with ReadonlyField" />
     <MESSAGE value="keep al field in model form attr all_fields" />
     <MESSAGE value="commit" />
@@ -436,25 +465,26 @@
     <MESSAGE value="- Icons for models" />
     <MESSAGE value="- Bug fix all_files" />
     <MESSAGE value="- Set meta in model as public attribute" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Set meta in model as public attribute" />
+    <MESSAGE value="- Fast form fields rendering" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fast form fields rendering" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="458" y="83" width="1096" height="946" key="CommitChangelistDialog2" timestamp="1590163314921">
+    <state x="458" y="83" width="1096" height="946" key="CommitChangelistDialog2" timestamp="1590638340484">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
-    <state x="458" y="83" width="1096" height="946" key="CommitChangelistDialog2/67.34.1853.1046@67.34.1853.1046" timestamp="1590163314921" />
-    <state x="167" y="132" width="1653" height="848" key="DiffContextDialog" timestamp="1590285916020">
+    <state x="458" y="83" width="1096" height="946" key="CommitChangelistDialog2/67.34.1853.1046@67.34.1853.1046" timestamp="1590638340484" />
+    <state x="167" y="132" width="1653" height="848" key="DiffContextDialog" timestamp="1590638191805">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
-    <state x="167" y="132" width="1653" height="848" key="DiffContextDialog/67.34.1853.1046@67.34.1853.1046" timestamp="1590285916020" />
+    <state x="167" y="132" width="1653" height="848" key="DiffContextDialog/67.34.1853.1046@67.34.1853.1046" timestamp="1590638191805" />
     <state x="729" y="191" width="519" height="729" key="RollbackChangesDialog" timestamp="1590266642768">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
     <state x="729" y="191" width="519" height="729" key="RollbackChangesDialog/67.34.1853.1046@67.34.1853.1046" timestamp="1590266642768" />
-    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2" timestamp="1590163316637">
+    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2" timestamp="1590638341673">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
-    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2/67.34.1853.1046@67.34.1853.1046" timestamp="1590163316637" />
+    <state x="488" y="229" width="1000" height="654" key="Vcs.Push.Dialog.v2/67.34.1853.1046@67.34.1853.1046" timestamp="1590638341673" />
     <state x="167" y="132" width="1653" height="848" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1590283673016">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
@@ -463,9 +493,9 @@
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
     <state x="563" y="225" width="860" height="674" key="find.popup/67.34.1853.1046@67.34.1853.1046" timestamp="1590286231109" />
-    <state x="572" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1590286205324">
+    <state x="572" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1590638296885">
       <screen x="67" y="34" width="1853" height="1046" />
     </state>
-    <state x="572" y="45" width="840" height="1034" key="search.everywhere.popup/67.34.1853.1046@67.34.1853.1046" timestamp="1590286205324" />
+    <state x="572" y="45" width="840" height="1034" key="search.everywhere.popup/67.34.1853.1046@67.34.1853.1046" timestamp="1590638296885" />
   </component>
 </project>
