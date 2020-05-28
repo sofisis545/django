@@ -8,6 +8,8 @@ from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db.models.deletion import CASCADE
+
+from django.templatetags.static import static
 from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
 from django.utils.html import smart_urlquote
@@ -317,19 +319,22 @@ class RelatedFieldWidgetWrapper(forms.Widget):
         s = f'<div class="related-widget-wrapper">{ctx["rendered_widget"]}'
         if ctx['can_change_related']:
             s += f'<a class="related-widget-wrapper-link change-related" id="change_id_{ctx["name"]}" '\
-                 f'data-href-template="{ctx["change_related_template_url"]}?{ctx["url_params"]}">' \
-                 f'<span title="{_("Change selected %(model)s")}" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'
+                 f'data-href-template="{ctx["change_related_template_url"]}?{ctx["url_params"]}" ' \
+                 f'title="{_("Change selected %(model)s")}"> ' \
+                 f'<img src="{static("admin/img/icon-changelink.svg")}" alt="{_("Change")}"></a>'
 
         if ctx["can_add_related"]:
             s += f'<a class="related-widget-wrapper-link add-related" id="add_id_{ctx["name"]}" ' \
-                 f'href="{ctx["add_related_url"]}?{ctx["url_params"]}">' \
-                 f'<span title="{_("Add another %(model)s")}" class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>'
+                 f'href="{ctx["add_related_url"]}?{ctx["url_params"]}" ' \
+                 f'title="{_("Add another %(model)s")}"> ' \
+                 f'<img src="{static("admin/img/icon-addlink.svg")}" alt="{_("Add")}">' \
+                 f'</a>'
 
         if ctx["can_delete_related"]:
             s += f'<a class="related-widget-wrapper-link delete-related" id="delete_id_{ctx["name"]}" ' \
-                 f'data-href-template="{ctx["delete_related_template_url"]}?{ctx["url_params"]}">' \
-                 f'<span title="{_("Delete selected %(model)s")}" class="glyphicon glyphicon-minus" ' \
-                 f'aria-hidden="true"></span></a>'
+                 f'data-href-template="{ctx["delete_related_template_url"]}?{ctx["url_params"]}" ' \
+                 f'title="{_("Delete selected %(model)s")}"> ' \
+                 f'<img src="{static("admin/img/icon-deletelink.svg")}" alt="{_("Delete")}"></a>'
         s += '</div>'
         return s
 
