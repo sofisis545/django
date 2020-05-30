@@ -417,7 +417,7 @@ def display_for_value(value, empty_value_display, boolean=False):
 
     # set by sofisis for render according __html__ attr
     if hasattr(value, '__html__'):
-        return value
+        return value.__html__()
 
     if type(value) == bool:
         return _boolean_icon(value)
