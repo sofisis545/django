@@ -782,10 +782,10 @@ class Variable:
             except ValueError:
                 # Otherwise we'll set self.lookups so that resolve() knows we're
                 # dealing with a bonafide variable
-                if var.find(VARIABLE_ATTRIBUTE_SEPARATOR + '_') > -1 or var[0] == '_':
-                    raise TemplateSyntaxError("Variables and attributes may "
-                                              "not begin with underscores: '%s'" %
-                                              var)
+                # if var.find(VARIABLE_ATTRIBUTE_SEPARATOR + '_') > -1 or var[0] == '_':
+                #     raise TemplateSyntaxError("Variables and attributes may "
+                #                               "not begin with underscores: '%s'" %
+                #                               var)
                 self.lookups = tuple(var.split(VARIABLE_ATTRIBUTE_SEPARATOR))
 
     def resolve(self, context):

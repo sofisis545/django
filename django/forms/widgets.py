@@ -198,6 +198,7 @@ class Widget(metaclass=MediaDefiningClass):
     supports_microseconds = True
     form = None  # add by sofisis for allow comunication
     field = None  # add by sofisis for allow comunication
+    template_name = None
 
     def __init__(self, attrs=None):
         self.attrs = {} if attrs is None else attrs.copy()
@@ -292,7 +293,7 @@ class Input(Widget):
     Base class for all <input> widgets.
     """
     input_type = None  # Subclasses must define this.
-    template_name = 'django/forms/widgets/input.html'
+    # template_name = 'django/forms/widgets/input.html'
 
     def __init__(self, attrs=None):
         if attrs is not None:
@@ -307,6 +308,10 @@ class Input(Widget):
 
     def render(self, name, value, attrs=None, renderer=None):
         """Render the widget as an HTML string."""
+        # is more efficient render directly in format string, not template
+        if self.template_name:
+            return super().render(name, value, attrs, renderer)
+
         ctx = self.get_context(name, value, attrs)
         widget = ctx['widget']
         value = widget['value'] or ''
@@ -320,22 +325,22 @@ class TextInput(Input):
 
 class NumberInput(Input):
     input_type = 'number'
-    template_name = 'django/forms/widgets/number.html'
+    # template_name = 'django/forms/widgets/number.html'
 
 
 class EmailInput(Input):
     input_type = 'email'
-    template_name = 'django/forms/widgets/email.html'
+    # template_name = 'django/forms/widgets/email.html'
 
 
 class URLInput(Input):
     input_type = 'url'
-    template_name = 'django/forms/widgets/url.html'
+    # template_name = 'django/forms/widgets/url.html'
 
 
 class PasswordInput(Input):
     input_type = 'password'
-    template_name = 'django/forms/widgets/password.html'
+    # template_name = 'django/forms/widgets/password.html'
 
     def __init__(self, attrs=None, render_value=False):
         super().__init__(attrs)
@@ -349,7 +354,7 @@ class PasswordInput(Input):
 
 class HiddenInput(Input):
     input_type = 'hidden'
-    template_name = 'django/forms/widgets/hidden.html'
+    # template_name = 'django/forms/widgets/hidden.html'
 
 
 class MultipleHiddenInput(HiddenInput):
@@ -392,7 +397,7 @@ class MultipleHiddenInput(HiddenInput):
 class FileInput(Input):
     input_type = 'file'
     needs_multipart_form = True
-    template_name = 'django/forms/widgets/file.html'
+    # template_name = 'django/forms/widgets/file.html'
 
     def format_value(self, value):
         """File input never renders a value."""
@@ -522,7 +527,6 @@ class TimeInput(DateTimeBaseInput):
     input_type = 'time'
 
 
-
 # Defined at module level so that CheckboxInput is picklable (#17976)
 def boolean_check(v):
     return not (v is False or v is None or v == '')
@@ -530,7 +534,7 @@ def boolean_check(v):
 
 class CheckboxInput(Input):
     input_type = 'checkbox'
-    template_name = 'django/forms/widgets/checkbox.html'
+    # template_name = 'django/forms/widgets/checkbox.html'
 
     def __init__(self, attrs=None, check_test=None):
         super().__init__(attrs)
@@ -694,8 +698,8 @@ class ChoiceWidget(Widget):
 
 class Select(ChoiceWidget):
     input_type = 'select'
-    template_name = 'django/forms/widgets/select.html'
-    option_template_name = 'django/forms/widgets/select_option.html'
+    # template_name = 'django/forms/widgets/select.html'
+    # option_template_name = 'django/forms/widgets/select_option.html'
     add_id_index = False
     checked_attribute = {'selected': True}
     option_inherits_attrs = False
@@ -713,6 +717,9 @@ class Select(ChoiceWidget):
         return s
 
     def render(self, name, value, attrs=None, renderer=None):
+        # render with string, not template, is efficient
+        if self.template_name:
+            return super().render(name, value, attrs, renderer)
         ctx = self.get_context(name, value, attrs)
         widget = ctx['widget']
         return f'<select name="{widget["name"]}" {self.get_widget_attrs(widget)}>{self._render_option(widget, value)}</select>'
