@@ -362,7 +362,7 @@ class MultipleHiddenInput(HiddenInput):
     Handle <input type="hidden"> for fields that have a list
     of values.
     """
-    template_name = 'django/forms/widgets/multiple_hidden.html'
+    # template_name = 'django/forms/widgets/multiple_hidden.html'
 
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
@@ -378,10 +378,13 @@ class MultipleHiddenInput(HiddenInput):
                 widget_attrs['id'] = '%s_%s' % (id_, index)
             widget = HiddenInput()
             widget.is_required = self.is_required
-            subwidgets.append(widget.get_context(name, value_, widget_attrs)['widget'])
+            subwidgets.append(widget.render(name, value_, widget_attrs))
 
         context['widget']['subwidgets'] = subwidgets
         return context
+
+    def render(self, name, value, attrs=None, renderer=None):
+        return ''.join(self.get_context(name, value, attrs)['widget']['subwidgets'])
 
     def value_from_datadict(self, data, files, name):
         try:
@@ -846,7 +849,7 @@ class MultiWidget(Widget):
 
     You'll probably want to use this class with MultiValueField.
     """
-    template_name = 'django/forms/widgets/multiwidget.html'
+    # template_name = 'django/forms/widgets/multiwidget.html'
 
     def __init__(self, widgets, attrs=None):
         self.widgets = [w() if isinstance(w, type) else w for w in widgets]
@@ -883,9 +886,17 @@ class MultiWidget(Widget):
                 widget_attrs['id'] = '%s_%s' % (id_, i)
             else:
                 widget_attrs = final_attrs
-            subwidgets.append(widget.get_context(widget_name, widget_value, widget_attrs)['widget'])
+            # subwidgets.append(widget.get_context(widget_name, widget_value, widget_attrs)['widget'])
+            subwidgets.append(widget.render(widget_name, widget_value, widget_attrs))
         context['widget']['subwidgets'] = subwidgets
         return context
+
+    def render(self, name, value, attrs=None, renderer=None):
+        ctx = self.get_context(name, value, attrs)
+        html = ''
+        for widget in ctx['widget']['subwidgets']:
+            html += widget
+        return html
 
     def id_for_label(self, id_):
         if id_:
@@ -935,7 +946,7 @@ class SplitDateTimeWidget(MultiWidget):
     A widget that splits datetime input into two <input type="text"> boxes.
     """
     supports_microseconds = False
-    template_name = 'django/forms/widgets/splitdatetime.html'
+    #  template_name = 'django/forms/widgets/splitdatetime.html'
 
     def __init__(self, attrs=None, date_format=None, time_format=None, date_attrs=None, time_attrs=None):
         widgets = (
@@ -961,7 +972,7 @@ class SplitHiddenDateTimeWidget(SplitDateTimeWidget):
     """
     A widget that splits datetime input into two <input type="hidden"> inputs.
     """
-    template_name = 'django/forms/widgets/splithiddendatetime.html'
+    # template_name = 'django/forms/widgets/splithiddendatetime.html'
 
     def __init__(self, attrs=None, date_format=None, time_format=None, date_attrs=None, time_attrs=None):
         super().__init__(attrs, date_format, time_format, date_attrs, time_attrs)
@@ -980,7 +991,7 @@ class SelectDateWidget(Widget):
     month_field = '%s_month'
     day_field = '%s_day'
     year_field = '%s_year'
-    template_name = 'django/forms/widgets/select_date.html'
+    # template_name = 'django/forms/widgets/select_date.html'
     input_type = 'select'
     select_widget = Select
     date_re = re.compile(r'(\d{4}|0)-(\d\d?)-(\d\d?)$')
@@ -1024,7 +1035,7 @@ class SelectDateWidget(Widget):
         if not self.is_required:
             year_choices.insert(0, self.year_none_value)
         year_name = self.year_field % name
-        date_context['year'] = self.select_widget(attrs, choices=year_choices).get_context(
+        date_context['year'] = self.select_widget(attrs, choices=year_choices).render(
             name=year_name,
             value=context['widget']['value']['year'],
             attrs={
@@ -1037,7 +1048,7 @@ class SelectDateWidget(Widget):
         if not self.is_required:
             month_choices.insert(0, self.month_none_value)
         month_name = self.month_field % name
-        date_context['month'] = self.select_widget(attrs, choices=month_choices).get_context(
+        date_context['month'] = self.select_widget(attrs, choices=month_choices).render(
             name=month_name,
             value=context['widget']['value']['month'],
             attrs={
@@ -1050,7 +1061,7 @@ class SelectDateWidget(Widget):
         if not self.is_required:
             day_choices.insert(0, self.day_none_value)
         day_name = self.day_field % name
-        date_context['day'] = self.select_widget(attrs, choices=day_choices,).get_context(
+        date_context['day'] = self.select_widget(attrs, choices=day_choices,).render(
             name=day_name,
             value=context['widget']['value']['day'],
             attrs={
@@ -1061,9 +1072,12 @@ class SelectDateWidget(Widget):
         )
         subwidgets = []
         for field in self._parse_date_fmt():
-            subwidgets.append(date_context[field]['widget'])
+            subwidgets.append(date_context[field])
         context['widget']['subwidgets'] = subwidgets
         return context
+
+    def render(self, name, value, attrs=None, renderer=None):
+        return ''.join(self.get_context(name, value, attrs)['widget']['subwidgets'])
 
     def format_value(self, value):
         """

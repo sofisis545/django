@@ -103,7 +103,7 @@ class SimpleArrayField(forms.CharField):
 
 
 class SplitArrayWidget(forms.Widget):
-    template_name = 'postgres/widgets/split_array.html'
+    # template_name = 'postgres/widgets/split_array.html'
 
     def __init__(self, widget, size, **kwargs):
         self.widget = widget() if isinstance(widget, type) else widget
@@ -147,9 +147,12 @@ class SplitArrayWidget(forms.Widget):
             if id_:
                 final_attrs = {**final_attrs, 'id': '%s_%s' % (id_, i)}
             context['widget']['subwidgets'].append(
-                self.widget.get_context(name + '_%s' % i, widget_value, final_attrs)['widget']
+                self.widget.render(name + '_%s' % i, widget_value, final_attrs)
             )
         return context
+
+    def render(self, name, value, attrs=None, renderer=None):
+        return ''.join(self.get_context(name, value, attrs)['widget']['subwidgets'])
 
     @property
     def media(self):
