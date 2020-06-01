@@ -9,6 +9,8 @@ import warnings
 from collections import defaultdict
 from itertools import chain
 
+from django.template.defaultfilters import stringformat
+
 from django.conf import settings
 from django.forms.utils import to_current_timezone
 from django.templatetags.static import static
@@ -314,8 +316,11 @@ class Input(Widget):
 
         ctx = self.get_context(name, value, attrs)
         widget = ctx['widget']
-        value = widget['value'] or ''
-        return f'<input type="{widget["type"]}" name="{widget["name"]}" value="{value}" {self.get_widget_attrs(widget)}>'
+        html_value = ''
+        if widget['value'] is not None:
+            html_value = f'value="{stringformat(widget["value"], "s")}"'
+
+        return f'<input type="{widget["type"]}" name="{widget["name"]}" {html_value} {self.get_widget_attrs(widget)}>'
 
 
 class TextInput(Input):
