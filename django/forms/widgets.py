@@ -718,7 +718,7 @@ class Select(ChoiceWidget):
             if group_name:
                 s += f'<optgroup label="{group_name}">'
             for option in group_choices:
-                s += f'<option value="{option["value"]}" {self.get_widget_attrs(option)}> {option["label"]}</option>'
+                s += f'<option value="{option["value"]}" {self.get_widget_attrs(option)}>{option["label"]}</option>'
 
             if group_name:
                 s += f'</optgroup>'
