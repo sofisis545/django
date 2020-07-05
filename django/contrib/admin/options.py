@@ -1542,8 +1542,14 @@ class ModelAdmin(BaseModelAdmin):
         model = self.model
         opts = model._meta
 
+        # copy images files
+        copy_files = {}
         if request.method == 'POST' and '_saveasnew' in request.POST:
+            original_obj = self.get_object(request, unquote(object_id), to_field)
             object_id = None
+
+            for image_field in filter(lambda x: isinstance(x, models.FileField), opts.concrete_fields):
+                copy_files[image_field.name] = getattr(original_obj, image_field.name)
 
         add = object_id is None
 
@@ -1571,6 +1577,12 @@ class ModelAdmin(BaseModelAdmin):
                 new_object = form.instance
             formsets, inline_instances = self._create_formsets(request, new_object, change=not add)
             if all_valid(formsets) and form_validated:
+                # set image files
+                for name, value in copy_files.items():
+                    # not override define by user in form
+                    if not getattr(new_object, name):
+                        setattr(new_object, name, value)
+
                 self.save_model(request, new_object, form, not add)
                 self.save_related(request, form, formsets, not add)
                 change_message = self.construct_change_message(request, form, formsets, add)
