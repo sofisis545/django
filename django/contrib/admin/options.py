@@ -1580,7 +1580,7 @@ class ModelAdmin(BaseModelAdmin):
                 # set image files
                 for name, value in copy_files.items():
                     # not override define by user in form
-                    if not getattr(new_object, name):
+                    if not getattr(new_object, name) and f'{name}-clear' not in request.POST:
                         setattr(new_object, name, value)
 
                 self.save_model(request, new_object, form, not add)
