@@ -557,8 +557,12 @@ class FileField(Field):
             raise ValidationError(self.error_messages['invalid'], code='invalid')
 
         if self.max_length is not None and len(file_name) > self.max_length:
-            params = {'max': self.max_length, 'length': len(file_name)}
-            raise ValidationError(self.error_messages['max_length'], code='max_length', params=params)
+            # cut name to max length
+            file_root, file_ext = os.path.splitext(file_name)
+            truncation = len(file_root) - (len(file_name) - self.max_length)
+            file_root = file_root[:truncation]
+            data.name = f'{file_root}{file_ext}'
+
         if not file_name:
             raise ValidationError(self.error_messages['invalid'], code='invalid')
         if not self.allow_empty_file and not file_size:
@@ -566,6 +570,9 @@ class FileField(Field):
 
         return data
 
+        if data in self.empty_values:
+            return None
+        
     def clean(self, data, initial=None):
         # If the widget got contradictory inputs, we raise a validation error
         if data is FILE_INPUT_CONTRADICTION:
