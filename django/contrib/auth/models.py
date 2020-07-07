@@ -419,6 +419,10 @@ class AnonymousUser:
 
     def has_module_perms(self, module):
         return _user_has_module_perms(self, module)
+    
+    def has_model_perm(self, model, action):
+        # add by sofisis
+        return False
 
     @property
     def is_anonymous(self):
