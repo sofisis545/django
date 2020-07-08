@@ -504,6 +504,11 @@ class Model(metaclass=ModelBase):
         post_init.send(sender=cls, instance=self)
 
     @classmethod
+    def info(cls):
+        """ app_label and model_name tuple"""
+        return cls._meta.app_label, cls._meta.model_name
+
+    @classmethod
     def from_db(cls, db, field_names, values):
         if len(values) != len(cls._meta.concrete_fields):
             values_iter = iter(values)
