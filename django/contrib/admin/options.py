@@ -1534,6 +1534,10 @@ class ModelAdmin(BaseModelAdmin):
         with transaction.atomic(using=router.db_for_write(self.model)):
             return self._changeform_view(request, object_id, form_url, extra_context)
 
+    def log_changes(self, request, form, formsets, add):
+        # implement in sofisis admin
+        pass
+
     def _changeform_view(self, request, object_id, form_url, extra_context):
         to_field = request.POST.get(TO_FIELD_VAR, request.GET.get(TO_FIELD_VAR))
         if to_field and not self.to_field_allowed(request, to_field):
@@ -1585,12 +1589,13 @@ class ModelAdmin(BaseModelAdmin):
 
                 self.save_model(request, new_object, form, not add)
                 self.save_related(request, form, formsets, not add)
-                change_message = self.construct_change_message(request, form, formsets, add)
+                # change_message = self.construct_change_message(request, form, formsets, add)
+                self.log_changes(request, form, formsets, add)
                 if add:
-                    self.log_addition(request, new_object, change_message)
+                    # self.log_addition(request, new_object, change_message)
                     return self.response_add(request, new_object)
                 else:
-                    self.log_change(request, new_object, change_message)
+                    # self.log_change(request, new_object, change_message)
                     return self.response_change(request, new_object)
             else:
                 form_validated = False
