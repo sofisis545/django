@@ -62,6 +62,13 @@ class FieldFile(File):
         return self.storage.url(self.name)
 
     @property
+    def clean_url(self):
+        # not raise error like self.url
+        if self.name:
+            return self.url
+        return ''
+
+    @property
     def size(self):
         self._require_file()
         if not self._committed:
