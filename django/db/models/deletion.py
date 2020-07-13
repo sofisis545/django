@@ -306,7 +306,7 @@ class Collector:
             for model, obj in self.instances_with_model():
                 if not model._meta.auto_created:
                     signals.pre_delete.send(
-                        sender=model, instance=obj, using=self.using
+                        sender=model, instance=obj, using=self.using, dependencies_to_delete=self.data,
                     )
 
             # fast deletes
