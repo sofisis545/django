@@ -53,7 +53,7 @@ class View:
                 raise TypeError("You tried to pass in the %s method name as a "
                                 "keyword argument to %s(). Don't do that."
                                 % (key, cls.__name__))
-            if not hasattr(cls, key):
+            if not hasattr(cls, key) and key not in cls.__annotations__:
                 raise TypeError("%s() received an invalid keyword %r. as_view "
                                 "only accepts arguments that are already "
                                 "attributes of the class." % (cls.__name__, key))

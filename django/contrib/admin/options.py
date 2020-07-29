@@ -467,7 +467,8 @@ class BaseModelAdmin(metaclass=forms.MediaDefiningClass):
 
         return False
 
-    def has_add_permission(self, request):
+    # add unused arg obj for keep signature with ModelAdmin
+    def has_add_permission(self, request, obj=None):
         """
         Return True if the given request has permission to add an object.
         Can be overridden by the user in subclasses.
