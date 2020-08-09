@@ -1,4 +1,4 @@
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, SuspiciousOperation
 from django.forms import Form
 from django.forms.fields import BooleanField, IntegerField
 from django.forms.utils import ErrorList
@@ -89,9 +89,13 @@ class BaseFormSet:
         if self.is_bound:
             form = ManagementForm(self.data, auto_id=self.auto_id, prefix=self.prefix)
             if not form.is_valid():
-                raise ValidationError(
-                    str(_('ManagementForm data is missing or has been tampered with')) + str(self.errors) ,
-                    code='missing_management_form',
+                # Change by Sofisis for SuspiciousOperation, because validation error
+                # is silently, and user can not do something for repair this error
+                # this is a system error
+                raise SuspiciousOperation(
+                    str(_('ManagementForm data is missing or has been tampered with')) + \
+                    str(self.prefix) + str(self.__class__) + str(form.errors) ,
+                    # code='missing_management_form',
                 )
         else:
             form = ManagementForm(auto_id=self.auto_id, prefix=self.prefix, initial={

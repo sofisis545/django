@@ -1816,6 +1816,10 @@ class Model(metaclass=ModelBase):
                 )
         return errors
 
+    @staticmethod
+    def autocomplete_search_fields():
+        return []
+
 
 ############################################
 # HELPER FUNCTIONS (CURRIED MODEL METHODS) #
