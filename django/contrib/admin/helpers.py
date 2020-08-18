@@ -2,6 +2,7 @@ import json
 
 from django import forms
 from django.conf import settings
+from django.contrib.admin import utils
 from django.contrib.admin.utils import (
     display_for_field, flatten_fieldsets, help_text_for_field, label_for_field,
     lookup_field,
@@ -154,7 +155,7 @@ class AdminField:
             classes.append('vCheckboxLabel')
 
         if self.field.field.required:
-            label = f"{label}&nbsp<b style='color:red' title='{_('Required')}'>*</b>"
+            label = f"{label}&nbsp;<b style='color:red' title='{_('Required')}'>*</b>"
             classes.append('required')
         if not self.is_first:
             classes.append('inline')
@@ -198,7 +199,8 @@ class AdminReadonlyField(AdminField):
         if form._meta.labels and class_name in form._meta.labels:
             label = form._meta.labels[class_name]
         else:
-            label = label_for_field(self.field_name, form._meta.model, self.model_admin, form=form)
+            # label for field is override by sofisis
+            label = utils.label_for_field(self.field_name, form._meta.model, self.model_admin, form=form)
 
         attrs = {}
         if not self.is_first:
@@ -305,7 +307,7 @@ class InlineAdminFormSet:
             form_field = empty_form.all_fields[field_name]
             label = form_field.label
             if label is None:
-                label = label_for_field(field_name, self.opts.model, self.opts)
+                label = utils.label_for_field(field_name, self.opts.model, self.opts)
             yield {
                 'name': field_name,
                 'label': label,

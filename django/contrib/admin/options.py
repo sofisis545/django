@@ -1211,13 +1211,12 @@ class ModelAdmin(BaseModelAdmin):
         elif "_continue" in request.POST or (
                 # Redirecting after "Save as new".
                 "_saveasnew" in request.POST and self.save_as_continue and
-                self.has_change_permission(request, obj)
-        ):
-            if "_saveasnew" in request.POST:
-                msg = _('The {name} "{obj}" was added successfully.')
-                if self.has_change_permission(request, obj):
-                    msg += ' ' + _('You may edit it again below.')
-                self.message_user(request, format_html(msg, **msg_dict), messages.SUCCESS)
+                self.has_change_permission(request, obj)):
+            msg = _('The {name} "{obj}" was added successfully.')
+            if "_saveasnew" in request.POST and self.has_change_permission(request, obj):
+                msg += ' ' + _('You may edit it again below.')
+
+            self.message_user(request, format_html(msg, **msg_dict), messages.SUCCESS)
             if post_url_continue is None:
                 post_url_continue = obj_url
             post_url_continue = add_preserved_filters(
@@ -1539,6 +1538,12 @@ class ModelAdmin(BaseModelAdmin):
         # implement in sofisis admin
         pass
 
+    def _form_instance_on_get_change(self, request, form_class, obj):
+        return form_class(instance=obj)
+
+    def _form_instance_on_add(self, request, form_class):
+        return form_class(initial=self.get_changeform_initial_data(request))
+
     def _changeform_view(self, request, object_id, form_url, extra_context):
         to_field = request.POST.get(TO_FIELD_VAR, request.GET.get(TO_FIELD_VAR))
         if to_field and not self.to_field_allowed(request, to_field):
@@ -1602,11 +1607,11 @@ class ModelAdmin(BaseModelAdmin):
                 form_validated = False
         else:
             if add:
-                initial = self.get_changeform_initial_data(request)
-                form = ModelForm(initial=initial)
+                # initial = self.get_changeform_initial_data(request)
+                form = self._form_instance_on_add(request, ModelForm)
                 formsets, inline_instances = self._create_formsets(request, form.instance, change=False)
             else:
-                form = ModelForm(instance=obj)
+                form = self._form_instance_on_get_change(request, ModelForm, obj)
                 formsets, inline_instances = self._create_formsets(request, obj, change=True)
 
         if not add and not self.has_change_permission(request, obj):
