@@ -5,7 +5,7 @@
     <script type="text/javascript"
             id="django-admin-popup-response-constants"
             src="{% static "admin/js/popup_response.js" %}"
-            data-popup-response="{{ popup_response_data }}">
+            data-popup-response="{{ popup_response_data|force_escape }}">
     </script>
   </body>
 </html>
