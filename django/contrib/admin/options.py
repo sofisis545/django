@@ -1586,6 +1586,13 @@ class ModelAdmin(BaseModelAdmin):
             else:
                 new_object = form.instance
             formsets, inline_instances = self._create_formsets(request, new_object, change=not add)
+
+            # remove pk if is copy
+            if '_saveasnew' in request.POST:
+                for _formset in formsets:
+                    for _form in _formset.forms:
+                        _form.instance.pk = None
+
             if all_valid(formsets) and form_validated:
                 # set image files
                 for name, value in copy_files.items():
