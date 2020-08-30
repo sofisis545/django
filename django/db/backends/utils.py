@@ -81,12 +81,22 @@ class CursorWrapper:
         with self.db.wrap_database_errors:
             if params is None:
                 # params default might be backend specific.
-                return self.cursor.execute(sql)
+                try:
+                    return self.cursor.execute(sql)
+                except Exception as e:
+                    print(sql)
+                    # if not e.args:
+                    #     e.args = ('',)
+                    # e.args = e.args + (str(sql),)
+                    raise e
             else:
                 try:
                     return self.cursor.execute(sql, params)
                 except Exception as e:
                     print(sql, params)
+                    # if not e.args:
+                    #     e.args = ('',)
+                    # e.args = e.args + (str(sql), str(params))
                     raise e
 
     def _executemany(self, sql, param_list, *ignored_wrapper_args):

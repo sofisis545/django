@@ -81,8 +81,8 @@ class Options:
         self.base_manager_name = None
         self.default_manager_name = None
         self.model_name = None
-        self.verbose_name = None
-        self.verbose_name_plural = None
+        self._verbose_name = None
+        self._verbose_name_plural = None
         self.db_table = ''
         self.ordering = []
         self._ordering_clash = False
@@ -131,6 +131,22 @@ class Options:
         self.default_related_name = None
 
     @property
+    def verbose_name(self):
+        return self._verbose_name
+
+    @verbose_name.setter
+    def verbose_name(self, value):
+        self._verbose_name = value
+
+    @property
+    def verbose_name_plural(self):
+        return self._verbose_name_plural
+
+    @verbose_name_plural.setter
+    def verbose_name_plural(self, value):
+        self._verbose_name_plural = value
+
+    @property
     def label(self):
         return '%s.%s' % (self.app_label, self.object_name)
 
@@ -166,7 +182,7 @@ class Options:
         # First, construct the default values for these options.
         self.object_name = cls.__name__
         self.model_name = self.object_name.lower()
-        self.verbose_name = camel_case_to_spaces(self.object_name)
+        self._verbose_name = camel_case_to_spaces(self.object_name)
 
         # Store the original user-defined values for each option,
         # for use when serializing the model definition
@@ -183,7 +199,10 @@ class Options:
                     del meta_attrs[name]
             for attr_name in DEFAULT_NAMES:
                 if attr_name in meta_attrs:
-                    setattr(self, attr_name, meta_attrs.pop(attr_name))
+                    try:
+                        setattr(self, attr_name, meta_attrs.pop(attr_name))
+                    except AttributeError:
+                        raise
                     self.original_attrs[attr_name] = getattr(self, attr_name)
                 elif hasattr(self.meta, attr_name):
                     setattr(self, attr_name, getattr(self.meta, attr_name))
