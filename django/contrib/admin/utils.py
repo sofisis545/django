@@ -382,7 +382,7 @@ def display_for_field(value, field, empty_value_display):
         return field.display_changelist(value)
 
     if isinstance(field, models.FileField) and value:
-        return format_html('<a href="{}">{}</a>', value.url, value.url.split('/')[-1].split('_')[-1])
+        return format_html('<a target="_blank" href="{}">{}</a>', value.url, value.url.split('/')[-1].split('_')[-1])
 
     # if hasattr(field, 'display_changelist'):
     #     return field.display_changelist(value)

@@ -1791,8 +1791,8 @@ class ModelAdmin(BaseModelAdmin):
                         obj = self.save_form(request, form, change=True)
                         self.save_model(request, obj, form, change=True)
                         self.save_related(request, form, formsets=[], change=True)
-                        change_msg = self.construct_change_message(request, form, None)
-                        self.log_change(request, obj, change_msg)
+                        # change_msg = self.construct_change_message(request, form, None)
+                        self.log_changes(request, form, [], False)
                         changecount += 1
 
                 if changecount:
