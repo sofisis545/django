@@ -49,6 +49,7 @@ from django.utils.text import capfirst, format_lazy, get_text_list
 from django.utils.translation import gettext as _, ngettext
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import RedirectView
+from collections import defaultdict
 
 IS_POPUP_VAR = '_popup'
 TO_FIELD_VAR = '_to_field'
@@ -1599,6 +1600,13 @@ class ModelAdmin(BaseModelAdmin):
                     # not override define by user in form
                     if not getattr(new_object, name) and f'{name}-clear' not in request.POST:
                         setattr(new_object, name, value)
+
+                # ADD inline objs for set available in preset
+                new_object._presave_inlines = defaultdict(list)
+                for formset_ in formsets:
+                    new_object._presave_inlines[formset_.model] = []
+                    for form_ in formset_.forms:
+                        new_object._presave_inlines[formset_.model].append(form_.instance)
 
                 self.save_model(request, new_object, form, not add)
                 self.save_related(request, form, formsets, not add)
