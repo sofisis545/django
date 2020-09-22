@@ -161,6 +161,12 @@ class AdminField:
             classes.append('inline')
 
         contents = label
+        try:
+            icon = self.field.field.queryset.model._meta.icon
+        except:
+            pass
+        else:
+            contents = f'<img style="height:20px;width:20px" src="{icon}"> {contents}'
         attrs = {'class': ' '.join(classes)} if classes else {}
         # checkboxes should not have a label suffix as the checkbox appears
         # to the left of the label.
@@ -201,6 +207,13 @@ class AdminReadonlyField(AdminField):
         else:
             # label for field is override by sofisis
             label = utils.label_for_field(self.field_name, form._meta.model, self.model_admin, form=form)
+
+        try:
+            icon = self.field.field.queryset.model._meta.icon
+        except:
+            pass
+        else:
+            label = f'<img style="height:20px;width:20px" src="{icon}"> {label}'
 
         attrs = {}
         if not self.is_first:
