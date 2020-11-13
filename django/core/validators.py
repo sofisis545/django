@@ -508,7 +508,8 @@ def get_available_image_extensions():
         return []
     else:
         Image.init()
-        return [ext.lower()[1:] for ext in Image.EXTENSION]
+        # support for svg add by Sofisis
+        return [ext.lower()[1:] for ext in Image.EXTENSION] + ['svg']
 
 
 def validate_image_file_extension(value):

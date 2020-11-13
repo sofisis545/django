@@ -31,6 +31,7 @@ from django.utils.dateparse import parse_duration
 from django.utils.duration import duration_string
 from django.utils.ipv6 import clean_ipv6_address
 from django.utils.translation import gettext_lazy as _, ngettext_lazy
+from xml.etree import ElementTree
 
 __all__ = (
     'Field', 'CharField', 'IntegerField',
@@ -648,14 +649,31 @@ class ImageField(FileField):
             # cases, content_type will be None.
             f.content_type = Image.MIME.get(image.format)
         except Exception as exc:
-            # Pillow doesn't recognize it as an image.
-            raise ValidationError(
-                self.error_messages['invalid_image'],
-                code='invalid_image',
-            ) from exc
+            # add a workaround to handle svg images
+            if not self.is_svg(file):
+
+                # Pillow doesn't recognize it as an image.
+                raise ValidationError(
+                    self.error_messages['invalid_image'],
+                    code='invalid_image',
+                ) from exc
         if hasattr(f, 'seek') and callable(f.seek):
             f.seek(0)
         return f
+
+    def is_svg(self, f):
+        """
+        Check if provided file is svg
+        """
+        f.seek(0)
+        tag = None
+        try:
+            for event, el in ElementTree.iterparse(f, ('start',)):
+                tag = el.tag
+                break
+        except et.ParseError:
+            pass
+        return tag == '{http://www.w3.org/2000/svg}svg'
 
     def widget_attrs(self, widget):
         attrs = super().widget_attrs(widget)
