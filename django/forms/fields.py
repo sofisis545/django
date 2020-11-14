@@ -665,13 +665,14 @@ class ImageField(FileField):
         """
         Check if provided file is svg
         """
-        f.seek(0)
+
         tag = None
         try:
+            f.seek(0)
             for event, el in ElementTree.iterparse(f, ('start',)):
                 tag = el.tag
                 break
-        except et.ParseError:
+        except (ElementTree.ParseError, AttributeError):
             pass
         return tag == '{http://www.w3.org/2000/svg}svg'
 
