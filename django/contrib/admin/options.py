@@ -739,12 +739,15 @@ class ModelAdmin(BaseModelAdmin):
             self.date_hierarchy,
             self.get_search_fields(request),
             self.get_list_select_related(request),
-            self.list_per_page,
+            self.get_list_per_page(request),
             self.list_max_show_all,
             self.list_editable,
             self,
             sortable_by,
         )
+
+    def get_list_per_page(self, request):
+        return self.list_per_page
 
     def get_object(self, request, object_id, from_field=None):
         """
@@ -1335,6 +1338,9 @@ class ModelAdmin(BaseModelAdmin):
                                current_app=self.admin_site.name)
             preserved_filters = self.get_preserved_filters(request)
             post_url = add_preserved_filters({'preserved_filters': preserved_filters, 'opts': opts}, post_url)
+        elif self.has_add_permission(request, obj):
+            post_url = reverse('admin:%s_%s_add' % (opts.app_label, opts.model_name),
+                               current_app=self.admin_site.name)
         else:
             post_url = reverse('admin:index',
                                current_app=self.admin_site.name)
