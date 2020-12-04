@@ -88,6 +88,9 @@ class HttpRequest:
                 host = '%s:%s' % (host, server_port)
         return host
 
+    def get_domain(self):
+        return split_domain_port(self._get_raw_host())
+
     def get_host(self):
         """Return the HTTP host using the environment or request headers."""
         host = self._get_raw_host()
