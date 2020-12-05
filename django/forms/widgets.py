@@ -320,7 +320,7 @@ class Input(Widget):
         if widget['value'] is not None:
             html_value = f'value="{stringformat(widget["value"], "s")}"'
 
-        return f'<input type="{widget["type"]}" name="{widget["name"]}" {html_value} {self.get_widget_attrs(widget)}>'
+        return f'<input data-field-type="{self.field.__class__.__name__}" type="{widget["type"]}" name="{widget["name"]}" {html_value} {self.get_widget_attrs(widget)}>'
 
 
 class TextInput(Input):
