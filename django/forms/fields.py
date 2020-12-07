@@ -58,7 +58,8 @@ class Field:
 
     def __init__(self, *, required=True, widget=None, label=None, initial=None,
                  help_text='', error_messages=None, show_hidden_initial=False,
-                 validators=(), localize=False, disabled=False, label_suffix=None):
+                 validators=(), localize=False, disabled=False, label_suffix=None,
+                 bound_field=None):
         # required -- Boolean that specifies whether the field is required.
         #             True by default.
         # widget -- A Widget class, or instance of a Widget class, that should
@@ -82,6 +83,7 @@ class Field:
         #             is its widget is shown in the form but not editable.
         # label_suffix -- Suffix to be added to the label. Overrides
         #                 form's label_suffix.
+        self.bound_field = bound_field or self.bound_field
         self.required, self.label, self.initial = required, label, initial
         self.show_hidden_initial = show_hidden_initial
         self.help_text = help_text
