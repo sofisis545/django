@@ -262,7 +262,12 @@ class Widget(metaclass=MediaDefiningClass):
 
     def build_attrs(self, base_attrs, extra_attrs=None):
         """Build an attribute dictionary."""
-        return {**base_attrs, **(extra_attrs or {})}
+        attrs = {**base_attrs, **(extra_attrs or {})}
+        # set the type field in class for identify, and set css or javascript logic
+        # with this selector
+        # add by sofisis
+        attrs['class'] = f"{(attrs.get('class') or '')} {self.field.__class__.__name__}"
+        return attrs
 
     def value_from_datadict(self, data, files, name):
         """
@@ -320,7 +325,7 @@ class Input(Widget):
         if widget['value'] is not None:
             html_value = f'value="{stringformat(widget["value"], "s")}"'
 
-        return f'<input data-field-type="{self.field.__class__.__name__}" type="{widget["type"]}" name="{widget["name"]}" {html_value} {self.get_widget_attrs(widget)}>'
+        return f'<input type="{widget["type"]}" name="{widget["name"]}" {html_value} {self.get_widget_attrs(widget)}>'
 
 
 class TextInput(Input):

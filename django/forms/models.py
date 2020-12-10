@@ -861,10 +861,12 @@ class BaseModelFormSet(BaseFormSet):
                         pk_value = None
                 except IndexError:
                     pk_value = None
-            if isinstance(pk, (ForeignKey, OneToOneField)):
-                qs = pk.remote_field.model._default_manager.get_queryset()
-            else:
-                qs = self.model._default_manager.get_queryset()
+            # if isinstance(pk, (ForeignKey, OneToOneField)):
+            #     qs = pk.remote_field.model._default_manager.get_queryset()
+            # else:
+            #     qs = self.model._default_manager.get_queryset()
+            # change by sofisis for use the queryset that receive and not default queryset
+            qs = self.get_queryset()
             qs = qs.using(form.instance._state.db)
             if form._meta.widgets:
                 widget = form._meta.widgets.get(self._pk_field.name, HiddenInput)
