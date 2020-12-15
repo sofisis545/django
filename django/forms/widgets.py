@@ -137,15 +137,17 @@ class Media:
                 if head != item:
                     dependency_graph[item].add(head)
                 head = item
-        try:
-            return stable_topological_sort(all_items, dependency_graph)
-        except CyclicDependencyError:
-            warnings.warn(
-                'Detected duplicate Media files in an opposite order: {}'.format(
-                    ', '.join(repr(l) for l in lists)
-                ), MediaOrderConflictWarning,
-            )
-            return list(all_items)
+        # remove by sofisis for keep order according to add media
+        # and for performance
+        # try:
+        #     return stable_topological_sort(all_items, dependency_graph)
+        # except CyclicDependencyError:
+        #     warnings.warn(
+        #         'Detected duplicate Media files in an opposite order: {}'.format(
+        #             ', '.join(repr(l) for l in lists)
+        #         ), MediaOrderConflictWarning,
+        #     )
+        return list(all_items)
 
     def __add__(self, other):
         combined = Media()
