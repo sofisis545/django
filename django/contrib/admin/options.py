@@ -1551,6 +1551,11 @@ class ModelAdmin(BaseModelAdmin):
     def _form_instance_on_add(self, request, form_class):
         return form_class(initial=self.get_changeform_initial_data(request))
 
+
+    def full_save(self, request, obj, form, formsets, change):
+        self.save_model(request, obj, form, change)
+        self.save_related(request, form, formsets, change)
+
     def _changeform_view(self, request, object_id, form_url, extra_context):
         to_field = request.POST.get(TO_FIELD_VAR, request.GET.get(TO_FIELD_VAR))
         if to_field and not self.to_field_allowed(request, to_field):
@@ -1614,8 +1619,11 @@ class ModelAdmin(BaseModelAdmin):
                     for form_ in formset_.forms:
                         new_object._presave_inlines[formset_.model].append(form_.instance)
 
-                self.save_model(request, new_object, form, not add)
-                self.save_related(request, form, formsets, not add)
+                # self.save_model(request, new_object, form, not add)
+                # self.save_related(request, form, formsets, not add)
+                # edited by sofisis for get obj and formset in one place
+                self.full_save(request, new_object, form, formsets, not add)
+
                 # change_message = self.construct_change_message(request, form, formsets, add)
                 self.log_changes(request, form, formsets, add)
                 if add:
