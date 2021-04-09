@@ -31,7 +31,8 @@ SEARCH_VAR = 'q'
 ERROR_FLAG = 'e'
 
 IGNORED_PARAMS = (
-    ALL_VAR, ORDER_VAR, ORDER_TYPE_VAR, SEARCH_VAR, IS_POPUP_VAR, TO_FIELD_VAR)
+    # ignore 'o' for avoid errors with old ordering param
+    'o', ALL_VAR, ORDER_VAR, ORDER_TYPE_VAR, SEARCH_VAR, IS_POPUP_VAR, TO_FIELD_VAR)
 
 
 class ChangeList:
