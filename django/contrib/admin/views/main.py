@@ -24,7 +24,7 @@ from django.utils.translation import gettext
 
 # Changelist settings
 ALL_VAR = 'all'
-ORDER_VAR = 'o'
+ORDER_VAR = '_ordering'
 ORDER_TYPE_VAR = 'ot'
 PAGE_VAR = 'p'
 SEARCH_VAR = 'q'
@@ -282,11 +282,11 @@ class ChangeList:
         if ORDER_VAR in params:
             # Clear ordering and used params
             ordering = []
-            order_params = params[ORDER_VAR].split('.')
+            order_params = params[ORDER_VAR].split(',')
             for p in order_params:
                 try:
-                    none, pfx, idx = p.rpartition('-')
-                    field_name = self.list_display[int(idx)]
+                    none, pfx, field_name = p.rpartition('-')
+                    # field_name = self.list_display[int(idx)]
                     order_field = self.get_ordering_field(field_name)
                     if not order_field:
                         continue  # No 'admin_order_field', skip it
@@ -386,18 +386,21 @@ class ChangeList:
                     order_type = 'desc'
                 else:
                     order_type = 'asc'
-                for index, attr in enumerate(self.list_display):
-                    if self.get_ordering_field(attr) == field:
-                        ordering_fields[index] = order_type
-                        break
+                # for index, attr in enumerate(self.list_display):
+                #     if self.get_ordering_field(attr) == field:
+                #         ordering_fields[index] = order_type
+                #         break
+                ordering_fields[field] = order_type
         else:
-            for p in self.params[ORDER_VAR].split('.'):
-                none, pfx, idx = p.rpartition('-')
-                try:
-                    idx = int(idx)
-                except ValueError:
-                    continue  # skip it
-                ordering_fields[idx] = 'desc' if pfx == '-' else 'asc'
+            for p in self.params[ORDER_VAR].split(','):
+                if not p:
+                    continue
+                none, pfx, field_name = p.rpartition('-')
+                # try:
+                #     idx = int(idx)
+                # except ValueError:
+                #     continue  # skip it
+                ordering_fields[field_name] = 'desc' if pfx == '-' else 'asc'
         return ordering_fields
 
     def get_queryset(self, request):
