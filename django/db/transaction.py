@@ -1,4 +1,5 @@
 from contextlib import ContextDecorator, contextmanager
+from threading import current_thread
 
 from django.db import (
     DEFAULT_DB_ALIAS, DatabaseError, Error, ProgrammingError, connections,
@@ -166,6 +167,11 @@ class Atomic(ContextDecorator):
         self.savepoint = savepoint
 
     def __enter__(self):
+        # using database in session set by sofisis
+        try:
+            self.using = self.using or current_thread().sofisis_session.user_db.database or DEFAULT_DB_ALIAS
+        except AttributeError:
+            pass
         connection = get_connection(self.using)
 
         if not connection.in_atomic_block:
@@ -286,7 +292,7 @@ def atomic(using=None, savepoint=True):
     # Bare decorator: @atomic -- although the first argument is called
     # `using`, it's actually the function being decorated.
     if callable(using):
-        return Atomic(DEFAULT_DB_ALIAS, savepoint)(using)
+        return Atomic(None, savepoint)(using)
     # Decorator: @atomic(...) or context manager: with atomic(...): ...
     else:
         return Atomic(using, savepoint)
