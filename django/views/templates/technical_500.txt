@@ -37,7 +37,8 @@ File "{{ frame.filename }}" in {{ frame.function }}
 {% if exception_type %}Exception Type: {{ exception_type }}{% if request %} at {{ request.path_info }}{% endif %}
 {% if exception_value %}Exception Value: {{ exception_value }}{% endif %}{% endif %}{% endif %}
 {% if request %}Request information:
-{% if user_str %}USER: {{ user_str }}{% endif %}
+{% if user_str %}USER: {{ user_str }} {{ request.user.email}} pk: {{ request.user.pk }} {% endif %}
+USER_DB_ID: {{ request.session.id_user_isis}}
 
 GET:{% for k, v in request_GET_items %}
 {{ k }} = {{ v|stringformat:"r" }}{% empty %} No GET data{% endfor %}
