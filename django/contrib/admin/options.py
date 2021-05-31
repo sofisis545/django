@@ -1566,19 +1566,22 @@ class ModelAdmin(BaseModelAdmin):
 
         # copy images files
         copy_files = {}
+        original_obj = None
         if request.method == 'POST' and '_saveasnew' in request.POST:
             original_obj = self.get_object(request, unquote(object_id), to_field)
             object_id = None
 
             for image_field in filter(lambda x: isinstance(x, models.FileField), opts.concrete_fields):
                 copy_files[image_field.name] = getattr(original_obj, image_field.name)
+            original_obj.pk = None
 
         add = object_id is None
 
         if add:
             if not self.has_add_permission(request):
                 raise PermissionDenied
-            obj = None
+            # use the original object for use in create formset
+            obj = original_obj # or  None
 
         else:
             obj = self.get_object(request, unquote(object_id), to_field)
@@ -2003,8 +2006,9 @@ class ModelAdmin(BaseModelAdmin):
         inline_instances = []
         prefixes = {}
         get_formsets_args = [request]
-        if change:
-            get_formsets_args.append(obj)
+        # TODO set obj for same readonly on copy or save as new
+        #if change:
+        get_formsets_args.append(obj)
         for FormSet, inline in self.get_formsets_with_inlines(*get_formsets_args):
             prefix = FormSet.get_default_prefix()
             prefixes[prefix] = prefixes.get(prefix, 0) + 1
