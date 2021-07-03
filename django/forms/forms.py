@@ -173,11 +173,18 @@ class BaseForm:
             self._bound_fields_cache[name] = field.get_bound_field(self, name)
         return self._bound_fields_cache[name]
 
+    signal_errors = []
+
     @property
     def errors(self):
         """Return an ErrorDict for the data provided for the form."""
         if self._errors is None:
             self.full_clean()
+            if self._errors:
+                # track validation
+                for signal in self.signal_errors:
+                    signal(self)
+
         return self._errors
 
     def is_valid(self):
