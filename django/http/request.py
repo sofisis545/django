@@ -157,6 +157,9 @@ class HttpRequest:
                 raise
         return value
 
+    def get_full_host(self):
+        return f'{self.scheme}://{self._get_raw_host()}'
+
     def get_raw_uri(self):
         """
         Return an absolute URI from variables available in this request. Skip

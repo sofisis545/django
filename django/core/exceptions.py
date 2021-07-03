@@ -93,6 +93,8 @@ NON_FIELD_ERRORS = '__all__'
 
 class ValidationError(Exception):
     """An error while validating data."""
+    signal_validation_error = []
+
     def __init__(self, message, code=None, params=None):
         """
         The `message` argument can be a single error, a list of errors, or a
@@ -102,6 +104,7 @@ class ValidationError(Exception):
         list or dictionary can be an actual `list` or `dict` or an instance
         of ValidationError with its `error_list` or `error_dict` attribute set.
         """
+
         super().__init__(message, code, params)
 
         if isinstance(message, ValidationError):
@@ -135,6 +138,9 @@ class ValidationError(Exception):
             self.code = code
             self.params = params
             self.error_list = [self]
+
+        for signal in self.signal_validation_error:
+            signal(self)
 
     @property
     def message_dict(self):

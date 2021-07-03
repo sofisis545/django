@@ -243,6 +243,8 @@ class SafeExceptionReporterFilter(ExceptionReporterFilter):
 
 class ExceptionReporter:
     """Organize and coordinate reporting on exceptions."""
+    signal_exception_reporter = []
+
     def __init__(self, request, exc_type, exc_value, tb, is_email=False):
         self.request = request
         self.filter = get_exception_reporter_filter(self.request)
@@ -254,6 +256,10 @@ class ExceptionReporter:
         self.template_info = getattr(self.exc_value, 'template_debug', None)
         self.template_does_not_exist = False
         self.postmortem = None
+
+        # add by sofisis for tack errors in database
+        for signal in self.signal_exception_reporter:
+            signal(self)
 
     def get_traceback_data(self):
         """Return a dictionary containing traceback information."""
