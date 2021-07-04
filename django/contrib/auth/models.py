@@ -373,6 +373,10 @@ class AnonymousUser:
     _groups = EmptyManager(Group)
     _user_permissions = EmptyManager(Permission)
 
+    def __bool__(self):
+        # add by sofisis take as false this unreal user
+        return False
+
     def __str__(self):
         return 'AnonymousUser'
 
@@ -419,7 +423,7 @@ class AnonymousUser:
 
     def has_module_perms(self, module):
         return _user_has_module_perms(self, module)
-    
+
     def has_model_perm(self, model, action):
         # add by sofisis
         return False
