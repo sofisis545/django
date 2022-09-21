@@ -172,7 +172,7 @@ class Collector:
             return [objs]
 
     def collect(self, objs, source=None, nullable=False, collect_related=True,
-                source_attr=None, reverse_dependency=False, keep_parents=False):
+                source_attr=None, reverse_dependency=False, keep_parents=True):
         """
         Add 'objs' to the collection of objects to be deleted as well as all
         parent instances.  'objs' must be a homogeneous iterable collection of
