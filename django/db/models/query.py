@@ -705,7 +705,7 @@ class QuerySet:
         del_query.query.clear_ordering(force_empty=True)
 
         collector = Collector(using=del_query.db)
-        collector.collect(del_query)
+        collector.collect(objs=del_query, keep_parents=True)
         deleted, _rows_count = collector.delete()
 
         # Clear the result cache, in case this QuerySet gets reused.
