@@ -172,7 +172,7 @@ class Collector:
             return [objs]
 
     def collect(self, objs, source=None, nullable=False, collect_related=True,
-                source_attr=None, reverse_dependency=False, keep_parents=True):
+                source_attr=None, reverse_dependency=False, keep_parents=False):
         """
         Add 'objs' to the collection of objects to be deleted as well as all
         parent instances.  'objs' must be a homogeneous iterable collection of
@@ -199,8 +199,9 @@ class Collector:
             return
 
         model = new_objs[0].__class__
+        is_proxy = new_objs[0].meta.proxy
 
-        if not keep_parents:
+        if not (keep_parents and not is_proxy):
             # Recursively collect concrete model's parent models, but not their
             # related objects. These will be found by meta.get_fields()
             concrete_model = model._meta.concrete_model
@@ -212,11 +213,11 @@ class Collector:
                                  collect_related=False,
                                  reverse_dependency=True)
         if collect_related:
-            if keep_parents:
+            if keep_parents and not is_proxy:
                 parents = set(model._meta.get_parent_list())
             for related in get_candidate_relations_to_delete(model._meta):
                 # Preserve parent reverse relationships if keep_parents=True.
-                if keep_parents and related.model in parents:
+                if keep_parents and not is_proxy and related.model in parents:
                     continue
                 field = related.field
                 if field.remote_field.on_delete == DO_NOTHING:
