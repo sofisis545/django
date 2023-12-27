@@ -184,10 +184,12 @@ class ForwardManyToOneDescriptor:
                     remote_field.set_cached_value(rel_obj, instance)
             self.field.set_cached_value(instance, rel_obj)
 
+        # if rel_obj is None and not self.field.null:
+        #     raise self.RelatedObjectDoesNotExist(
+        #         "%s has no %s." % (self.field.model.__name__, self.field.name)
+        #     )
         if rel_obj is None and not self.field.null:
-            raise self.RelatedObjectDoesNotExist(
-                "%s has no %s." % (self.field.model.__name__, self.field.name)
-            )
+            return None
         else:
             return rel_obj
 
