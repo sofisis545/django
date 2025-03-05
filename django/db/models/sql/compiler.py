@@ -1074,16 +1074,37 @@ class SQLCompiler:
                 return iter([])
             else:
                 return
+
         if chunked_fetch:
             cursor = self.connection.chunked_cursor()
         else:
             cursor = self.connection.cursor()
+
         try:
             cursor.execute(sql, params)
-        except Exception:
+        except Exception as e:
             # Might fail for server-side cursors (e.g. connection closed)
-            cursor.close()
-            raise
+
+            if isinstance(e, DatabaseError) and "server closed the connection unexpectedly" in str(e):
+
+                self.connection.close()
+                self.connection.connect()
+
+                if chunked_fetch:
+                    cursor = self.connection.chunked_cursor()
+                else:
+                    cursor = self.connection.cursor()
+
+                try:
+                    cursor.execute(sql, params)
+                except Exception:
+                    # Might fail for server-side cursors (e.g. connection closed)
+                    cursor.close()
+                    raise
+
+            else:
+                cursor.close()
+                raise
 
         if result_type == CURSOR:
             # Give the caller the cursor to process and close.
