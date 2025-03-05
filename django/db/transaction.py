@@ -288,14 +288,28 @@ class Atomic(ContextDecorator):
                     connection.in_atomic_block = False
 
 
+class NonAtomic(ContextDecorator):
+
+    def __init__(self, using, savepoint):
+        self.using = using
+        self.savepoint = savepoint
+
+    def __enter__(self):
+        return None
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        return None
+
+
 def atomic(using=None, savepoint=True):
     # Bare decorator: @atomic -- although the first argument is called
     # `using`, it's actually the function being decorated.
-    if callable(using):
-        return Atomic(None, savepoint)(using)
+    # if callable(using):
+    #     return Atomic(None, savepoint)(using)
     # Decorator: @atomic(...) or context manager: with atomic(...): ...
-    else:
-        return Atomic(using, savepoint)
+    # else:
+    #     return Atomic(using, savepoint)
+    return NonAtomic(using, savepoint)
 
 
 def _non_atomic_requests(view, using):
