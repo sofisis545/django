@@ -309,7 +309,12 @@ def atomic(using=None, savepoint=True):
     # Decorator: @atomic(...) or context manager: with atomic(...): ...
     # else:
     #     return Atomic(using, savepoint)
-    return NonAtomic(using, savepoint)
+    if callable(using):
+        # If used as a bare decorator (without parentheses): @atomic
+        return NonAtomic(None, savepoint)(using)      
+    else:
+        # If used as... Decorator: @atomic(...) or Context Manager: with atomic(...): ...
+        return NonAtomic(using, savepoint)
 
 
 def _non_atomic_requests(view, using):
