@@ -557,7 +557,7 @@ class QuerySet:
         """
         defaults = defaults or {}
         self._for_write = True
-        with transaction.atomic(using=self.db):
+        with transaction.Atomic(using=self.db):
             try:
                 obj = self.select_for_update().get(**kwargs)
             except self.model.DoesNotExist:
