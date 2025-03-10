@@ -162,9 +162,9 @@ class Atomic(ContextDecorator):
     This is a private API.
     """
 
-    def __init__(self, using, savepoint):
-        self.using = using
-        self.savepoint = savepoint
+    def __init__(self, using: str = "", savepoint: bool = True):
+        self.using: str = using
+        self.savepoint: bool = savepoint
 
     def __enter__(self):
         # using database in session set by sofisis
