@@ -302,7 +302,8 @@ class Collector:
                 setattr(instance, model._meta.pk.attname, None)
                 return count, {model._meta.label: count}
 
-        with transaction.atomic(using=self.using, savepoint=False):
+        with transaction.Atomic(using=self.using, savepoint=False):
+
             # send pre_delete signals
             for model, obj in self.instances_with_model():
                 if not model._meta.auto_created:
